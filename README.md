@@ -2,8 +2,13 @@
 A web socket and webGL based browser game to learn wheelchair movements with an app.
 
 ## Run instructions
-1. Make sure you have node.js installed on your computer.
-2. When node.js is installed run with:
+1. Make sure you have node.js and bower installed on your computer.
+2. Install the dependencies with:
+<pre>
+$ npm install
+$ bower install
+</pre>
+3. When node.js is installed run with:
 <pre>
 $ node app.js
 </pre>
