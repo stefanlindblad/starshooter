@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AGI15 - Project 2</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+  </head>
+
+  <body>
+    <p id="connect-error" style="display:none;">Another server is already connected, and only one at the time is allowed!</p>
+    <table id="input-data">
+      <tr>
+        <td>Tilt Left/Right [gamma]</td>
+        <td id="doTiltLR"></td>
+      </tr>
+      <tr>
+        <td>Tilt Front/Back [beta]</td>
+        <td id="doTiltFB"></td>
+      </tr>
+      <tr>
+        <td>Direction [alpha]</td>
+        <td id="doDirection"></td>
+      </tr>
+    </table>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="bower_components/threejs/build/three.min.js"></script>
+    <script>
+    	var socket = io();
+      socket.emit('server connect', {});
+      socket.on('server already connected', function(msg){
+        socket.disconnect();
+        document.getElementById('connect-error').style.display = "inline";
+        document.getElementById('input-data').style.display = "none";
+      })
+      socket.on('update movement', function(msg){
+      	deviceOrientationHandler(msg.tiltLR, msg.tiltFB, msg.dir);
+      });
+      function deviceOrientationHandler(tiltLR, tiltFB, dir) {
+        document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
+        document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
+        document.getElementById("doDirection").innerHTML = Math.round(dir);
+      }
+    </script>
+  </body>
+</html>

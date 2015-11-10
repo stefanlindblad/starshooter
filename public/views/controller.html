@@ -1,0 +1,49 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Controller for the wheelchair project - AGI15 KTH</title>
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+</head>
+<body>
+  <h2>Wheelcannon!</h2>
+  <p id="connect-error" style="display:none;">Another controller is already connected, and only one at the time is allowed!</p>
+  <p id="no-support" style="display:none;">Not supported on your device or browser. Sorry.</p>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    "use strict";
+
+  	var socket = io();
+    socket.emit('client connect', {});
+    socket.on('client already connected', function(msg){
+      socket.disconnect();
+      document.getElementById('connect-error').style.display = "inline";
+    });
+
+    init();
+
+    function init() {
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', function(eventData) {
+          var tiltLR = eventData.gamma;
+          var tiltFB = eventData.beta;
+          var dir = eventData.alpha
+          deviceOrientationHandler(tiltLR, tiltFB, dir);
+          }, false);
+      }
+      else {
+        document.getElementById('no-support').style.display = "inline";
+      }
+    }
+
+    function deviceOrientationHandler(tiltLR, tiltFB, dir) {
+		  socket.emit('update movement', {
+        "tiltLR": Math.round(tiltLR),
+        "tiltFB": Math.round(tiltFB),
+        "dir": Math.round(dir)
+      });
+    }
+    </script>
+</script>
+</html>
