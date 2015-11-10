@@ -14,7 +14,7 @@ $ node app.js 1337
 The port will now be 1337.
 
 ## Structure
-Then communication is made with socket.io.
+The communication is made with socket.io.
 
 Whats being rendered on the server is determined by the html-file "server.html" located in "public/views". This is where we add the canvas for WebGL/three.js.
 
