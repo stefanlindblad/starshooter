@@ -28,97 +28,13 @@
     <script src="socket.io/socket.io.js"></script>
     <script src="bower_components/threejs/build/three.min.js"></script>
     <script src="bower_components/tweenjs/src/Tween.js"></script>
-    <script>
-      var dirFix = 0;
-      var tiltFix = 0;
-      var isCalibrated = false;
 
-      // Sockets/Input
-      var socket = io();
-      socket.emit('server connect', {});
-      socket.on('server already connected', function(msg){
-        socket.disconnect();
-        document.getElementById('connect-error').style.display = "inline";
-        document.getElementById('input-data').style.display = "none";
-      })
-      socket.on('update movement', function(msg){
-        deviceOrientationHandler(msg.tiltLR, msg.tiltFB, msg.dir);
-        if(!isCalibrated) {
-          calibrate(msg.dir, msg.tiltFB);
-          isCalibrated = true;
-        }
-      });
-      function deviceOrientationHandler(tiltLR, tiltFB, dir) {
-        document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
-        document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
-        document.getElementById("doDirection").innerHTML = Math.round(dir);
-        var x = (dir - dirFix) * -1;
-        var y = tiltFB - tiltFix;
-        moveAim(new THREE.Vector3(x, y, 0));
-      }
-      function calibrate(dir, tiltFB) {
-        dirFix = dir;
-        tiltFix = tiltFB;
-      }
-      document.onkeyup= function(e){
-          e = window.event || e;
-          if(e.keyCode == 82) {
-            isCalibrated = false;
-          }
-      }
+    <script src="scripts/scenes/MainScene.js"></script>
 
-      // Threejs
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-      camera.position.z = 10;
+    <script src="scripts/controllers/KeyInputController.js"></script>
+    <script src="scripts/controllers/PhoneInputController.js"></script>
+    <script src="scripts/controllers/AimController.js"></script>
 
-      var renderer = new THREE.WebGLRenderer({antialias: true});
-      renderer.setSize( window.innerWidth, window.innerHeight );
-      document.body.appendChild( renderer.domElement );
-      var geometry = new THREE.RingGeometry( 1, 2, 32 );
-      var material = new THREE.MeshBasicMaterial( { color: 0xffff00, side: THREE.DoubleSide } );
-      var circle = new THREE.Mesh( geometry, material );
-      circle.position.x = 0;
-      circle.position.y = 0;
-
-      scene.add( circle );
-
-      function render() {
-        requestAnimationFrame( render );
-        renderer.render( scene, camera );
-      }
-
-      render();
-
-      var vFOV = camera.fov * Math.PI / 180;
-      var height = 2 * Math.tan( vFOV / 2 ) * camera.position.z;
-      var width = height * camera.aspect;
-      var viewport = {
-        left: width / 2 * -1,
-        right: width / 2,
-        top: height / 2,
-        bottom: height / 2 * -1
-      }
-      function moveAim(targetPosition) {
-        if (targetPosition.x < viewport.left) {
-          circle.position.x = viewport.left;
-        }
-        else if(targetPosition.x > viewport.right) {
-          circle.position.x = viewport.right;
-        }
-        else {
-          circle.position.x = targetPosition.x;
-        }
-        if (targetPosition.y < viewport.bottom) {
-          circle.position.y = viewport.bottom;
-        }
-        else if(targetPosition.y > viewport.top) {
-          circle.position.y = viewport.top;
-        }
-        else {
-          circle.position.y = targetPosition.y;
-        }
-      }
-    </script>
+    <script src="scripts/main.js"></script>
   </body>
 </html>
