@@ -21,6 +21,7 @@ var MainScene = {
 
 	render: function() {
 		requestAnimationFrame( this.render.bind(this) );
+		TWEEN.update();
     	this.renderer.render( this.scene, this.camera );
 	}
 }

@@ -1,16 +1,19 @@
 "use strict";
 
 var AimController = {
-  x: 0,
-  y: 0,
-  z: 0,
-  aim: null,
+  position: {
+    x: 0,
+    y: 0,
+  },
   boundaries: {
   	top: 0,
   	right: 0,
   	bottom: 0,
   	left: 0
   },
+  aim: null,
+  aimSpeed: 200,
+  movementThreshold: 2,
 
   init: function() {
 	  var geometry = new THREE.RingGeometry( 1, 2, 32 );
@@ -35,25 +38,39 @@ var AimController = {
   },
 
   moveAim: function(targetPosition) {
+    var distance = Math.sqrt(Math.pow(targetPosition.x - this.position.x, 2) + Math.pow(targetPosition.y - this.position.y, 2));
+    if(distance < this.movementThreshold) {
+      return;
+    }
+
     if (targetPosition.x < this.boundaries.left) {
-      this.x = this.boundaries.left;
+      this.position.x = this.boundaries.left;
     }
     else if(targetPosition.x > this.boundaries.right) {
-      this.x = this.boundaries.right;
+      this.position.x = this.boundaries.right;
     }
     else {
-      this.x = targetPosition.x;
+      this.position.x = targetPosition.x;
     }
     if (targetPosition.y < this.boundaries.bottom) {
-      this.y = this.boundaries.bottom;
+      this.position.y = this.boundaries.bottom;
     }
     else if(targetPosition.y > this.boundaries.top) {
-      this.y = this.boundaries.top;
+      this.position.y = this.boundaries.top;
     }
     else {
-      this.y = targetPosition.y;
+      this.position.y = targetPosition.y;
     }
-    this.aim.position.x = this.x;
-    this.aim.position.y = this.y
+
+    TWEEN.removeAll();
+    var position = { x : this.aim.position.x, y: this.aim.position.y };
+    var target = this.position;
+    var tween = new TWEEN.Tween(position).to(target, this.aimSpeed).start();
+
+    var self = this;
+    tween.onUpdate(function(){
+        self.aim.position.x = position.x;
+        self.aim.position.y = position.y;
+    });
   }
 }
