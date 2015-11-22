@@ -12,7 +12,7 @@ var AimController = {
   	left: 0
   },
   aim: null,
-  aimSpeed: 200,
+  aimSpeed: 60,
   movementThreshold: 2,
 
   init: function() {
