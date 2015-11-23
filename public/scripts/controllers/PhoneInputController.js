@@ -8,6 +8,8 @@ var PhoneInputController = {
   	isCalibrated: false
   },
 
+  infoIsHidden: false,
+
   init: function() {
   	this.setupSocket();
   },
@@ -22,6 +24,11 @@ var PhoneInputController = {
       document.getElementById('input-data').style.display = "none";
     })
     socket.on('update movement', function(msg){
+      if(!self.infoIsHidden) {
+        self.infoIsHidden = true;
+        document.getElementById("phoneinput-info").style.display = "none";
+      }
+
       self.deviceOrientationHandler(msg.tiltLR, msg.tiltFB, msg.dir);
       if(!self.calibrateVars.isCalibrated) {
         self.doCalibrate(msg.dir, msg.tiltFB);
