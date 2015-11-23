@@ -36,13 +36,20 @@ var TravelController = {
 
 		var self = this;
 		setInterval(function() { self.moveCamera() }, 100);
+		EnvironmentController.init();
 	},
 
 	moveCamera: function() {
-		var self = this;
-		MainScene.camera.position.copy(self.path.getPointAt(this.travelCounter));
-		MainScene.camera.lookAt(self.path.getPointAt(this.travelCounter+0.0005));
+		if(this.travelCounter <= 1) {
+			var self = this;
+			MainScene.camera.position.copy(self.path.getPointAt(this.travelCounter));
+			MainScene.camera.lookAt(self.path.getPointAt(this.travelCounter+0.0005));
 
-		this.travelCounter += 0.0005;
+			this.travelCounter += 0.0005;
+		}
+		else {
+			console.log("GAME ENDED!");
+		}
+
 	}
 }

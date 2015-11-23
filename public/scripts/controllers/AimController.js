@@ -88,6 +88,5 @@ var AimController = {
     pos = pos.add(vector.multiplyScalar(dist.length()));
     this.aim.position.x = pos.x;
     this.aim.position.y = pos.y;
-    console.log(this.aim.position);
   }
 }

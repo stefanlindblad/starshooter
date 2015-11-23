@@ -1,7 +1,7 @@
 "use strict";
 
 var Line = {
-	init: function() {
+	create: function() {
 		var material = new THREE.LineBasicMaterial({
 			color: 0x05B8FF
 		});
