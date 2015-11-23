@@ -16,7 +16,7 @@ var MainScene = {
 	  	this.renderer.setSize( window.innerWidth, window.innerHeight );
 	  	document.body.appendChild( this.renderer.domElement );
 
-	  	//Line.init();
+	  	TravelController.init();
 
 	  	this.render();
 	},

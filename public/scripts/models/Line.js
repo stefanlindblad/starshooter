@@ -3,7 +3,7 @@
 var Line = {
 	init: function() {
 		var material = new THREE.LineBasicMaterial({
-			color: 0x0000ff
+			color: 0x05B8FF
 		});
 
 		var geometry = new THREE.Geometry();

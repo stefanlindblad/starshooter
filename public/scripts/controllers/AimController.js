@@ -5,6 +5,7 @@ var AimController = {
     x: 0,
     y: 0,
   },
+  originalZ: -50,
   boundaries: {
   	top: 0,
   	right: 0,
@@ -12,8 +13,8 @@ var AimController = {
   	left: 0
   },
   aim: null,
-  aimSpeed: 60,
-  movementThreshold: 2,
+  aimSpeed: 100,
+  movementThreshold: 4,
 
   init: function() {
     this.setupAimBoundaries();
@@ -24,7 +25,7 @@ var AimController = {
 	  this.aim.position.x = this.position.x;
 	  this.aim.position.y = this.boundaries.bottom;
     this.position.y = this.boundaries.bottom;
-    this.aim.position.z = -50;
+    this.aim.position.z = this.originalZ;
 	  MainScene.camera.add(this.aim);
   },
 
@@ -81,14 +82,12 @@ var AimController = {
       - (y / window.innerHeight) * 2 + 1,
       0.5
     );
-    vector.unproject(MainScene.camera);
-
-    var dir = vector.sub( MainScene.camera.position ).normalize();
-
-    var distance = (this.aim.position.z - MainScene.camera.position.z)*0.5 / dir.z;
-    console.log(distance);
-    var pos = MainScene.camera.position.clone().add( dir.multiplyScalar( distance ) );
+    var zero = new THREE.Vector3(0, 0, 0);
+    var pos = zero;
+    var dist = this.aim.position.clone().multiplyScalar(0.5);
+    pos = pos.add(vector.multiplyScalar(dist.length()));
     this.aim.position.x = pos.x;
     this.aim.position.y = pos.y;
+    console.log(this.aim.position);
   }
 }
