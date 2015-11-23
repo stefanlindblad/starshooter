@@ -85,8 +85,8 @@ var AimController = {
 
     var dir = vector.sub( MainScene.camera.position ).normalize();
 
-    var distance = (this.aim.position.z - MainScene.camera.position.z) / dir.z;
-
+    var distance = (this.aim.position.z - MainScene.camera.position.z)*0.5 / dir.z;
+    console.log(distance);
     var pos = MainScene.camera.position.clone().add( dir.multiplyScalar( distance ) );
     this.aim.position.x = pos.x;
     this.aim.position.y = pos.y;
