@@ -1,6 +1,6 @@
 "use strict";
 
 MainScene.init();
-PhoneInputController.init();
+SelectInputController.init();
 KeyInputController.init();
 AimController.init();

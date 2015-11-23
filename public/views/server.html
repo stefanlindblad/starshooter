@@ -11,18 +11,25 @@
       <table>
         <tr>
           <td>Tilt Left/Right [gamma]</td>
-          <td id="doTiltLR"></td>
+          <td id="tilt-LR"></td>
         </tr>
         <tr>
           <td>Tilt Front/Back [beta]</td>
-          <td id="doTiltFB"></td>
+          <td id="tilt-FB"></td>
         </tr>
         <tr>
           <td>Direction [alpha]</td>
-          <td id="doDirection"></td>
+          <td id="direction"></td>
         </tr>
       </table>
       <p>r = recalibrate controls</p>
+    </div>
+    <div id="controller-selection" class="table">
+      <div class="table-cell">
+        <h1>Select controls</h1>
+        <a href="" id="phone-control" class="button">Phone</a>
+        <a href="" id="mouse-control" class="button">Mouse</a>
+      </div>
     </div>
 
     <script src="socket.io/socket.io.js"></script>
@@ -31,6 +38,8 @@
 
     <script src="scripts/scenes/MainScene.js"></script>
 
+    <script src="scripts/controllers/SelectInputController.js"></script>
+    <script src="scripts/controllers/MouseInputController.js"></script>
     <script src="scripts/controllers/KeyInputController.js"></script>
     <script src="scripts/controllers/PhoneInputController.js"></script>
     <script src="scripts/controllers/AimController.js"></script>

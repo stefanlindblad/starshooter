@@ -16,15 +16,16 @@ var AimController = {
   movementThreshold: 2,
 
   init: function() {
-	  var geometry = new THREE.RingGeometry( 1, 2, 32 );
-	  var material = new THREE.MeshBasicMaterial( { color: 0xffff00, side: THREE.DoubleSide } );
+    this.setupAimBoundaries();
+
+	  var geometry = new THREE.RingGeometry( 2, 2.2, 32 );
+	  var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
 	  this.aim = new THREE.Mesh( geometry, material );
-	  this.aim.position.x = this.x;
-	  this.aim.position.y = this.y;
-
-	  MainScene.scene.add(this.aim);
-
-	  this.setupAimBoundaries();
+	  this.aim.position.x = this.position.x;
+	  this.aim.position.y = this.boundaries.bottom;
+    this.position.y = this.boundaries.bottom;
+    this.aim.position.z = -50;
+	  MainScene.camera.add(this.aim);
   },
 
   setupAimBoundaries: function() {
@@ -37,31 +38,31 @@ var AimController = {
 	  this.boundaries.left = width / 2 * -1;
   },
 
-  moveAim: function(targetPosition) {
-    var distance = Math.sqrt(Math.pow(targetPosition.x - this.position.x, 2) + Math.pow(targetPosition.y - this.position.y, 2));
+  moveAimPhone: function(x, y) {
+    y += this.boundaries.bottom;
+    var distance = Math.sqrt(Math.pow(x - this.position.x, 2) + Math.pow(y - this.position.y, 2));
     if(distance < this.movementThreshold) {
       return;
     }
 
-    if (targetPosition.x < this.boundaries.left) {
+    if (x < this.boundaries.left) {
       this.position.x = this.boundaries.left;
     }
-    else if(targetPosition.x > this.boundaries.right) {
+    else if(x > this.boundaries.right) {
       this.position.x = this.boundaries.right;
     }
     else {
-      this.position.x = targetPosition.x;
+      this.position.x = x;
     }
-    if (targetPosition.y < this.boundaries.bottom) {
+    if (y < this.boundaries.bottom) {
       this.position.y = this.boundaries.bottom;
     }
-    else if(targetPosition.y > this.boundaries.top) {
+    else if(y > this.boundaries.top) {
       this.position.y = this.boundaries.top;
     }
     else {
-      this.position.y = targetPosition.y;
+      this.position.y = y;
     }
-
     TWEEN.removeAll();
     var position = { x : this.aim.position.x, y: this.aim.position.y };
     var target = this.position;
@@ -72,5 +73,22 @@ var AimController = {
         self.aim.position.x = position.x;
         self.aim.position.y = position.y;
     });
+  },
+
+  moveAimMouse: function(x, y) {
+    var vector = new THREE.Vector3(
+      x / window.innerWidth * 2 - 1,
+      - (y / window.innerHeight) * 2 + 1,
+      0.5
+    );
+    vector.unproject(MainScene.camera);
+
+    var dir = vector.sub( MainScene.camera.position ).normalize();
+
+    var distance = (this.aim.position.z - MainScene.camera.position.z) / dir.z;
+
+    var pos = MainScene.camera.position.clone().add( dir.multiplyScalar( distance ) );
+    this.aim.position.x = pos.x;
+    this.aim.position.y = pos.y;
   }
 }

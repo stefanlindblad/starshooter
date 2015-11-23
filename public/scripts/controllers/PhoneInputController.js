@@ -31,12 +31,12 @@ var PhoneInputController = {
   },
 
 	deviceOrientationHandler: function (tiltLR, tiltFB, dir) {
-    document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
-    document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
-    document.getElementById("doDirection").innerHTML = Math.round(dir);
+    document.getElementById("tilt-LR").innerHTML = Math.round(tiltLR);
+    document.getElementById("tilt-FB").innerHTML = Math.round(tiltFB);
+    document.getElementById("direction").innerHTML = Math.round(dir);
     var x = (dir - this.calibrateVars.direction) * -1;
     var y = tiltFB - this.calibrateVars.tilt;
-    AimController.moveAim(new THREE.Vector3(x, y, 0));
+    AimController.moveAimPhone(x, y);
   },
 
   doCalibrate: function (dir, tiltFB) {
