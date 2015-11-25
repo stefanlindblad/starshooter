@@ -35,6 +35,7 @@ var TravelController = {
 		MainScene.scene.add(splineObject);
 
 		EnvironmentController.init();
+		TargetController.init();
 	},
 
 	moveCamera: function() {
