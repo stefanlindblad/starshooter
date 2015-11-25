@@ -17,7 +17,6 @@ var Circle = {
         var radians = Math.acos(this.zAxis.dot(tangent));
 
 		circle.quaternion.setFromAxisAngle(this.axis, radians );
-        console.log(circle.quaternion);
 		MainScene.scene.add( circle );
 	}
 }

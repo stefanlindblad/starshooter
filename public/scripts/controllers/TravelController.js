@@ -2,10 +2,10 @@
 
 var TravelController = {
 	path: null,
+	speed: 0.00005,
 	travelCounter: 0,
 
 	init: function() {
-		var self = this;
 		this.createPath();
 	},
 
@@ -17,8 +17,8 @@ var TravelController = {
 		var prevX = 0;
 		var prevY = 0;
 		for(var i = 0; i < pointsLength; i++) {
-			var x = prevX + chance.floating({min: -20, max: 20});
-			var y = prevY + chance.floating({min: -20, max: 20});
+			var x = prevX + chance.floating({min: -5, max: 5});
+			var y = prevY + chance.floating({min: -5, max: 5});
 			var z = i * pointZdiff;
 			prevX = x;
 			prevY = y;
@@ -34,8 +34,6 @@ var TravelController = {
 
 		MainScene.scene.add(splineObject);
 
-		var self = this;
-		setInterval(function() { self.moveCamera() }, 100);
 		EnvironmentController.init();
 	},
 
@@ -43,9 +41,9 @@ var TravelController = {
 		if(this.travelCounter <= 1) {
 			var self = this;
 			MainScene.camera.position.copy(self.path.getPointAt(this.travelCounter));
-			MainScene.camera.lookAt(self.path.getPointAt(this.travelCounter+0.0005));
+			MainScene.camera.lookAt(self.path.getPointAt(this.travelCounter+this.speed));
 
-			this.travelCounter += 0.0005;
+			this.travelCounter += this.speed;
 		}
 		else {
 			console.log("GAME ENDED!");

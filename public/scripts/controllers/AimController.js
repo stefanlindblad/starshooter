@@ -5,7 +5,7 @@ var AimController = {
     x: 0,
     y: 0,
   },
-  originalZ: -50,
+  originalZ: -2,
   boundaries: {
   	top: 0,
   	right: 0,
@@ -19,7 +19,7 @@ var AimController = {
   init: function() {
     this.setupAimBoundaries();
 
-	  var geometry = new THREE.RingGeometry( 2, 2.2, 32 );
+	  var geometry = new THREE.RingGeometry( 0.1, 0.12, 32 );
 	  var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
 	  this.aim = new THREE.Mesh( geometry, material );
 	  this.aim.position.x = this.position.x;
