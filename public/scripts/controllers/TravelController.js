@@ -37,6 +37,7 @@ var TravelController = {
 		var self = this;
 		setInterval(function() { self.moveCamera() }, 100);
 		EnvironmentController.init();
+		TargetController.init();
 	},
 
 	moveCamera: function() {
