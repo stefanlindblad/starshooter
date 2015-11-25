@@ -1,7 +1,7 @@
 "use strict";
 
 var Target = {
-	geometry: new THREE.IcosahedronGeometry( chance.floating({min: 0.5, max: 2.5}), 0 ),
+	geometry: new THREE.IcosahedronGeometry( chance.floating({min: 1.5, max: 3.5}), 0 ),
 	material: new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } ),
 	axis: new THREE.Vector3(),
 	zAxis: new THREE.Vector3(0, 0, 1),

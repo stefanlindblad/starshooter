@@ -26,6 +26,7 @@ var MainScene = {
 		TWEEN.update();
 		TravelController.mainLoop();
 		ShootController.moveShot();
+		ShootController.collisionDetection(TargetController.getTargets(), 2);
     	this.renderer.render( this.scene, this.camera );
 	}
 }

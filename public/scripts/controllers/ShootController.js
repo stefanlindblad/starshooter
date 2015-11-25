@@ -36,5 +36,22 @@ var ShootController = {
 			this.shootObject.position.z += MainScene.camera.position.z - this.lastCameraPos;
 			this.lastCameraPos = MainScene.camera.position.z;
 		}
+	},
+
+	collisionDetection: function(targets, threshold) {
+		if(this.shootObject) {
+			for(var i = 0; i < targets.length; i++) {
+				var target = targets[i];
+				if( this.distance(target.position, this.shootObject.position) < threshold)
+					MainScene.scene.remove(target);
+			}
+		}
+	},
+
+	distance: function(v1, v2) {
+    var dx = v1.x - v2.x;
+    var dy = v1.y - v2.y;
+    var dz = v1.z - v2.z;
+    return Math.sqrt(dx*dx+dy*dy+dz*dz);
 	}
 }
