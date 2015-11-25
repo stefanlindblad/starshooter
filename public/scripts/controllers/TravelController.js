@@ -2,8 +2,9 @@
 
 var TravelController = {
 	path: null,
-	speed: 0.00005,
+	speed: 0.00002,
 	travelCounter: 0,
+	targetCounter: 0,
 
 	init: function() {
 		this.createPath();
@@ -38,17 +39,41 @@ var TravelController = {
 		TargetController.init();
 	},
 
-	moveCamera: function() {
-		if(this.travelCounter <= 1) {
+	moveCamera: function(callback) {
+		if(this.travelCounter < 1-this.speed) {
 			var self = this;
 			MainScene.camera.position.copy(self.path.getPointAt(this.travelCounter));
 			MainScene.camera.lookAt(self.path.getPointAt(this.travelCounter+this.speed));
 
 			this.travelCounter += this.speed;
+			callback(false);
 		}
 		else {
-			console.log("GAME ENDED!");
+			callback(true);
 		}
+	},
+
+	mainLoop: function() {
+		var self = this;
+		this.moveCamera(function(error) {
+			if(error) {
+				console.log("GAME ENDED!")
+				return;
+			}
+
+			if(TargetController.targets[0].position.z > MainScene.camera.position.z) {
+				TargetController.addTarget(
+					self.path.getPointAt(self.travelCounter+TargetController.zDiff),
+					self.path.getTangentAt(self.travelCounter+TargetController.zDiff)
+				)
+			}
+			if(EnvironmentController.elements[0].position.z > MainScene.camera.position.z) {
+				EnvironmentController.addElement(
+					self.path.getPointAt(self.travelCounter+EnvironmentController.zDiff),
+					self.path.getTangentAt(self.travelCounter+EnvironmentController.zDiff)
+				)
+			}
+		});
 
 	}
 }

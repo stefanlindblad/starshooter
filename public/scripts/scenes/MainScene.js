@@ -24,9 +24,8 @@ var MainScene = {
 	render: function() {
 		requestAnimationFrame( this.render.bind(this) );
 		TWEEN.update();
-		//TravelController.extendPath(1);
-		TravelController.moveCamera();
-
+		TravelController.mainLoop();
+		ShootController.moveShot();
     	this.renderer.render( this.scene, this.camera );
 	}
 }

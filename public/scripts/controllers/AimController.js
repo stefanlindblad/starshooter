@@ -19,7 +19,7 @@ var AimController = {
   init: function() {
     this.setupAimBoundaries();
 
-	  var geometry = new THREE.RingGeometry( 0.1, 0.12, 32 );
+	  var geometry = new THREE.RingGeometry( 0.05, 0.058, 32 );
 	  var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
 	  this.aim = new THREE.Mesh( geometry, material );
 	  this.aim.position.x = this.position.x;
@@ -27,6 +27,8 @@ var AimController = {
     this.position.y = this.boundaries.bottom;
     this.aim.position.z = this.originalZ;
 	  MainScene.camera.add(this.aim);
+
+    ShootController.init();
   },
 
   setupAimBoundaries: function() {
@@ -80,7 +82,7 @@ var AimController = {
     var vector = new THREE.Vector3(
       x / window.innerWidth * 2 - 1,
       - (y / window.innerHeight) * 2 + 1,
-      0.5
+      1
     );
     var zero = new THREE.Vector3(0, 0, 0);
     var pos = zero;

@@ -2,21 +2,26 @@
 
 var EnvironmentController = {
 	elements: [],
-
+	maxElements: 20,
+	zDiff: 0.05,
 	init: function() {
-		this.createPathElements();
+		for(var i = 1; i <= this.maxElements; i++) {
+			this.addElement(
+				TravelController.path.getPointAt(this.zDiff/this.maxElements * i),
+				TravelController.path.getTangentAt(this.zDiff/this.maxElements * i)
+			)
+		}
 	},
+	getElements: function() {
+		return this.elements;
+	},
+	addElement: function(position, tangent) {
+		var circle = Circle.create(position, tangent);
+		this.elements.push(circle);
 
-	createPathElements: function() {
-		var splineSteps = 0.005;
-		var path = TravelController.path;
-		var i = 0;
-		while(splineSteps * i <= 1) {
-			Circle.create(
-				TravelController.path.getPointAt(i*splineSteps),
-				TravelController.path.getTangentAt(i*splineSteps)
-			);
-			i++;
+		if(this.elements.length > this.maxElements) {
+			MainScene.scene.remove(this.elements[0]);
+			this.elements.shift();
 		}
 	}
 }

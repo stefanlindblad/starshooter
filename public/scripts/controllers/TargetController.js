@@ -3,12 +3,17 @@
 var TargetController = {
 
 	targets: [],
-	maxTargets: 20,
-
+	maxTargets: 5,
+	zDiff: 0.05,
 	init: function() {
-		this.createPathTargets();
-	},
 
+		for(var i = 1; i <= this.maxTargets; i++) {
+			this.addTarget(
+				TravelController.path.getPointAt(this.zDiff/this.maxTargets * i),
+				TravelController.path.getTangentAt(this.zDiff/this.maxTargets * i)
+			)
+		}
+	},
 	getTargets: function() {
 		return this.targets;
 	},
@@ -17,7 +22,9 @@ var TargetController = {
 		var target = Target.create(position, tangent);
 		this.targets.push(target);
 
-		if(this.targets.length >= this.maxTargets):
+		if(this.targets.length > this.maxTargets) {
+			MainScene.scene.remove(this.targets[0]);
 			this.targets.shift();
-	},
+		}
+	}
 }

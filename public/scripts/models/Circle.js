@@ -18,5 +18,6 @@ var Circle = {
 
 		circle.quaternion.setFromAxisAngle(this.axis, radians );
 		MainScene.scene.add( circle );
+		return circle;
 	}
 }
