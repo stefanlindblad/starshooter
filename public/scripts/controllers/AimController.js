@@ -42,7 +42,7 @@ var AimController = {
   },
 
   moveAimPhone: function(x, y) {
-    y += this.boundaries.bottom;
+    y += this.boundaries.bottom / 3;
     var distance = Math.sqrt(Math.pow(x - this.position.x, 2) + Math.pow(y - this.position.y, 2));
     if(distance < this.movementThreshold) {
       return;

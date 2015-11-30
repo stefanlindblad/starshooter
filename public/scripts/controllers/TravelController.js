@@ -26,14 +26,6 @@ var TravelController = {
 			points[i] = new THREE.Vector3(x, y, z);
 		}
 		this.path = new THREE.SplineCurve3(points);
-		var geometry = new THREE.Geometry();
-		geometry.vertices = this.path.getPoints(pointsLength*50);
-
-		var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
-
-		var splineObject = new THREE.Line( geometry, material );
-
-		MainScene.scene.add(splineObject);
 
 		EnvironmentController.init();
 		TargetController.init();
@@ -68,9 +60,10 @@ var TravelController = {
 				)
 			}
 			if(EnvironmentController.elements[0].position.z > MainScene.camera.position.z) {
+				var dZ = EnvironmentController.zDiff; // + chance.floating({ min: -0.01, max: 0.01 });
 				EnvironmentController.addElement(
-					self.path.getPointAt(self.travelCounter+EnvironmentController.zDiff),
-					self.path.getTangentAt(self.travelCounter+EnvironmentController.zDiff)
+					self.path.getPointAt(self.travelCounter+dZ),
+					self.path.getTangentAt(self.travelCounter+dZ)
 				)
 			}
 		});
