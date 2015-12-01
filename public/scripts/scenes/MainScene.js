@@ -8,6 +8,8 @@ var MainScene = {
 	renderer: null,
 
 	init: function() {
+
+		// Threejs
 		this.scene = new THREE.Scene();
 
 		this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );

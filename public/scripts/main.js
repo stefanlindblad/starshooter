@@ -2,3 +2,4 @@
 
 SelectInputController.init();
 KeyInputController.init();
+GUIController.init();

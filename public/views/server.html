@@ -2,12 +2,13 @@
   <head>
     <meta charset="utf-8">
     <title>AGI15 - Project 2</title>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand:400,300,700|Codystar' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
   </head>
 
   <body>
     <p id="connect-error" style="display:none;">Another server is already connected, and only one at the time is allowed!</p>
-    <div id="input-data">
+    <div id="input-data" style="display:none;">
       <table>
         <tr>
           <td>Tilt Left/Right [gamma]</td>
@@ -24,11 +25,16 @@
       </table>
       <p>r = recalibrate controls</p>
     </div>
+    <div id="gui" style="display:none;">
+      <div id="score"><span>Score: </span><span class="holder">0</span></div>
+      <div id="exit"><a href="" id="exitgame-button" class="button">Exit</a></div>
+    </div>
     <div id="controller-selection" class="table">
       <div class="table-cell">
-        <h1>Select controls</h1>
-        <a href="" id="phone-control" class="button">Phone</a>
-        <a href="" id="mouse-control" class="button">Mouse</a>
+        <h1 class="logo">Starshooter</h1>
+        <p>Select controls</strong></p>
+        <p><a href="" id="phone-control" class="button">Phone</a>
+        <a href="" id="mouse-control" class="button">Mouse</a></p>
       </div>
     </div>
     <div id="phoneinput-info" class="table" style="display:none;">
@@ -93,6 +99,8 @@
     <script src="scripts/controllers/EnvironmentController.js"></script>
     <script src="scripts/controllers/TargetController.js"></script>
     <script src="scripts/controllers/ShootController.js"></script>
+    <script src="scripts/controllers/GUIController.js"></script>
+    <script src="scripts/controllers/AudioController.js"></script>
 
     <script src="scripts/models/Line.js"></script>
     <script src="scripts/models/Circle.js"></script>

@@ -5,11 +5,11 @@ var SelectInputController = {
   init: function() {
 
     var self = this;
-  	document.getElementById("phone-control").addEventListener("click", function(e) {
+  	$("#phone-control").click(function(e) {
       e.preventDefault()
       self.selectPhoneInput();
     });
-    document.getElementById("mouse-control").addEventListener("click", function(e) {
+    $("#mouse-control").click(function(e) {
       e.preventDefault()
       self.selectMouseInput();
     });
@@ -24,6 +24,7 @@ var SelectInputController = {
     MainScene.init();
     AimController.init();
     MouseInputController.init();
+    AudioController.init();
     this.hideInputSelection();
   },
 
@@ -50,5 +51,7 @@ var SelectInputController = {
     MainScene.init();
     AimController.init();
     PhoneInputController.init();
+    AudioController.init();
+
   }
 }

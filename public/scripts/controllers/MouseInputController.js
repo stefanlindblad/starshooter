@@ -3,7 +3,7 @@
 var MouseInputController = {
 
   init: function() {
-  	document.onmousemove = this.handleMouseMove;
+  	$(document).mousemove(this.handleMouseMove);
   },
 
   handleMouseMove: function(event) {

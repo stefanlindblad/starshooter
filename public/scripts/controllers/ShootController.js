@@ -7,6 +7,7 @@ var ShootController = {
 	lastCameraPos: null,
 	clock: new THREE.Clock(),
 	tick: 0,
+	score: 0,
 
 	init: function() {
 		var self = this;
@@ -49,8 +50,14 @@ var ShootController = {
 		if(this.shootObject) {
 			for(var i = 0; i < targets.length; i++) {
 				var target = targets[i];
+				if(!target.base.visible)
+					return;
+
+				this.prevHitTarget = target;
 				if( this.distance(target.base.position, this.shootObject.mesh.position) < threshold) {
 					TargetController.createSparks(target);
+					this.score += 10;
+					$("#score .holder").html(this.score);
 				}
 			}
 		}

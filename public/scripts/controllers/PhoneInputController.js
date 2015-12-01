@@ -20,13 +20,14 @@ var PhoneInputController = {
   	socket.emit('server connect', {});
     socket.on('server already connected', function(msg){
       socket.disconnect();
-      document.getElementById('connect-error').style.display = "inline";
+      $('#connect-error').css('display', 'inline');
+      $('#input-data').css('display', 'none');
       document.getElementById('input-data').style.display = "none";
     })
     socket.on('update movement', function(msg){
       if(!self.infoIsHidden) {
         self.infoIsHidden = true;
-        document.getElementById("phoneinput-info").style.display = "none";
+        $('#phoneinput-info').css('display', 'none');
       }
       if(msg.dir > 180) {
         msg.dir -= 360;
@@ -40,9 +41,9 @@ var PhoneInputController = {
   },
 
 	deviceOrientationHandler: function (tiltLR, tiltFB, dir) {
-    document.getElementById("tilt-LR").innerHTML = Math.round(tiltLR);
-    document.getElementById("tilt-FB").innerHTML = Math.round(tiltFB);
-    document.getElementById("direction").innerHTML = Math.round(dir);
+    $("#tilt-LR").html(Math.round(tiltLR));
+    $("#tilt-FB").html(Math.round(tiltFB));
+    $("#direction").html(Math.round(dir));
     var x = (dir - this.calibrateVars.direction) * -1;
     var y = tiltFB - this.calibrateVars.tilt;
     AimController.moveAimPhone(x, y);
