@@ -3,8 +3,10 @@
 var TargetController = {
 
 	targets: [],
-	maxTargets: 10,
+	maxTargets: 5,
 	zDiff: 0.05,
+	animationSpeed: 10,
+	clock: new THREE.Clock(),
 
 	init: function() {
 
@@ -28,14 +30,23 @@ var TargetController = {
 	},
 
 	addTarget: function(position, tangent) {
-		Target.create(position, tangent);
+		this.targets.push(Target.create(position, tangent));
 
 		if(this.targets.length > this.maxTargets) {
 			MainScene.scene.remove(this.targets[0]);
-			MainScene.scene.remove(this.targets[1]);
-			this.targets.shift();
 			this.targets.shift();
 
+		}
+	},
+
+	animateTargets: function() {
+		for(var i = 0; i < this.targets.length; i++) {
+			//if(i<this.targets.length-1)
+			//	console.log(this.targets[i] === this.targets[i+1]);
+			var glow = this.targets[i].glow;
+			var base = this.targets[i].base;
+			var delta = this.clock.getDelta();
+			Target.rotateObject(delta, base, glow);
 		}
 	}
 }

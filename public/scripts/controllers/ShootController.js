@@ -42,8 +42,8 @@ var ShootController = {
 		if(this.shootObject) {
 			for(var i = 0; i < targets.length; i++) {
 				var target = targets[i];
-				if( this.distance(target.position, this.shootObject.position) < threshold) {
-					TargetController.createSparks(target);	
+				if( this.distance(target.base.position, this.shootObject.position) < threshold) {
+					TargetController.createSparks(target.base);	
 				}	
 			}
 		}

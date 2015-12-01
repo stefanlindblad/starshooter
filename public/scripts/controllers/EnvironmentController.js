@@ -13,9 +13,11 @@ var EnvironmentController = {
 			)
 		}
 	},
+
 	getElements: function() {
 		return this.elements;
 	},
+	
 	addElement: function(position, tangent) {
 		//var circle = Circle.create(position, tangent);
 		var circle = ImperfectCircle.create(position, tangent);

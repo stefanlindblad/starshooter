@@ -54,7 +54,9 @@ var TravelController = {
 				return;
 			}
 
-			if(TargetController.targets[0].position.z > MainScene.camera.position.z) {
+			TargetController.animateTargets();
+
+			if(TargetController.targets[0].base.position.z > MainScene.camera.position.z) {
 				TargetController.addTarget(
 					self.path.getPointAt(self.travelCounter+TargetController.zDiff),
 					self.path.getTangentAt(self.travelCounter+TargetController.zDiff)

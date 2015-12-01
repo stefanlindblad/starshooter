@@ -3,7 +3,10 @@
 var Target = {
 	geometry: new THREE.SphereGeometry(chance.floating({min: 5, max: 7.5}), 32, 16),
 	axis: new THREE.Vector3(),
-	zAxis: new THREE.Vector3(0, 0, 1),
+	zAxis: new THREE.Vector3(0, 0, -1),
+	rotValue: new THREE.Vector3(chance.floating({min: TargetController.animationSpeed/2, max: TargetController.animationSpeed}), 
+							    chance.floating({min: TargetController.animationSpeed/2, max: TargetController.animationSpeed}), 
+							    0),
 
 	create: function(position, tangent) {
 		var baseTexture = THREE.ImageUtils.loadTexture( "scripts/models/targetTexture.jpg" );
@@ -37,11 +40,19 @@ var Target = {
 		baseTarget.quaternion.setFromAxisAngle(this.axis, radians );
 		glowTarget.quaternion.setFromAxisAngle(this.axis, radians );
 
-		TargetController.targets.push(baseTarget);
-		TargetController.targets.push(glowTarget);
+		MainScene.scene.add(baseTarget);
+		MainScene.scene.add(glowTarget);
+		return {
+			base: baseTarget,
+			glow: glowTarget
+		}
+	},
 
-		MainScene.scene.add( baseTarget );
-		MainScene.scene.add( glowTarget );
+	rotateObject: function(delta, base, glow) {
+		//base.rotation.x += delta * this.rotValue.x;
+		base.rotation.y += delta * this.rotValue.y;
+		//glow.rotation.x += delta * this.rotValue.x;
+		glow.rotation.y += delta * this.rotValue.y;
 	},
 
 	randomPosition: function(min, max) {
