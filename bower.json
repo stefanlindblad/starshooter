@@ -16,6 +16,7 @@
   "dependencies": {
     "tweenjs": "~16.3.1",
     "threejs": "*",
-    "chance": "~0.8.0"
+    "chance": "~0.8.0",
+    "jquery": "~2.1.4"
   }
 }

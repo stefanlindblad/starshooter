@@ -43,6 +43,7 @@ var TravelController = {
 		if(this.travelCounter < 1-this.speed) {
 			var self = this;
 			MainScene.camera.position.copy(self.path.getPointAt(this.travelCounter));
+			MainScene.mainLight.position.set(MainScene.camera.position); 
 			MainScene.camera.lookAt(self.path.getPointAt(this.travelCounter+this.speed));
 
 			this.travelCounter += this.speed;
