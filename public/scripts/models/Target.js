@@ -48,13 +48,6 @@ var Target = {
 		}
 	},
 
-	rotateObject: function(delta, base, glow) {
-		//base.rotation.x += delta * this.rotValue.x;
-		base.rotation.y += delta * this.rotValue.y;
-		//glow.rotation.x += delta * this.rotValue.x;
-		glow.rotation.y += delta * this.rotValue.y;
-	},
-
 	randomPosition: function(min, max) {
 		var x = chance.floating({min: min, max: max});
 		var y = chance.floating({min: min, max: max});

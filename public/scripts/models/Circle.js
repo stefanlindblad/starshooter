@@ -15,9 +15,7 @@ var Circle = {
 		}
 
 		var circle = new THREE.Mesh(geometry, this.material);
-		circle.position.x = position.x;
-		circle.position.y = position.y;
-		circle.position.z = position.z;
+		circle.position.set(position.x, position.y, position.z);
 
  		tangent = tangent.normalize();
         this.axis.crossVectors(this.zAxis, tangent).normalize();

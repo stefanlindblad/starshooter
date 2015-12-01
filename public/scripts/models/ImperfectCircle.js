@@ -8,7 +8,7 @@ var ImperfectCircle = {
 	create: function(position, tangent) {
 		var circleGeometry = new THREE.Geometry();
 
-		var radius = 60;
+		var radius = 50;
 		var maxRad = radius+Math.random()*radius;;
 		var minRad = 0.88*maxRad;
 		var twoPi = 2*Math.PI;

@@ -28,7 +28,9 @@ var PhoneInputController = {
         self.infoIsHidden = true;
         document.getElementById("phoneinput-info").style.display = "none";
       }
-
+      if(msg.dir > 180) {
+        msg.dir -= 360;
+      }
       self.deviceOrientationHandler(msg.tiltLR, msg.tiltFB, msg.dir);
       if(!self.calibrateVars.isCalibrated) {
         self.doCalibrate(msg.dir, msg.tiltFB);

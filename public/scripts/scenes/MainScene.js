@@ -16,11 +16,22 @@ var MainScene = {
 		this.mainLight = new THREE.PointLight(0xffffff);
 		this.mainLight.position.set(this.camera.position);
 		this.scene.add(this.mainLight);
+
 		this.renderer = new THREE.WebGLRenderer({antialias: true});
 	  	this.renderer.setSize( window.innerWidth, window.innerHeight );
 	  	document.body.appendChild( this.renderer.domElement );
 
 	  	TravelController.init();
+
+	  	window.addEventListener( 'resize', function() {
+            var w = window.innerWidth,
+                h = window.innerHeight;
+
+            this.camera.aspect = w / h;
+            this.camera.updateProjectionMatrix();
+
+            this.renderer.setSize( w, h );
+        }, false );
 
 	  	this.render();
 	},
@@ -29,8 +40,8 @@ var MainScene = {
 		requestAnimationFrame( this.render.bind(this) );
 		TWEEN.update();
 		TravelController.mainLoop();
-		ShootController.moveShot();
-		ShootController.collisionDetection(TargetController.getTargets(), 2);
+		ShootController.animateShot();
+		ShootController.collisionDetection(TargetController.getTargets(), 8);
     	this.renderer.render( this.scene, this.camera );
 	}
 }

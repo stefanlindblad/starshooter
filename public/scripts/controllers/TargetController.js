@@ -26,11 +26,14 @@ var TargetController = {
 		var pMaterial = new THREE.PointsMaterial({color: 0xFF0000, size: 20});
 		var points = new THREE.Points(target.geometry, pMaterial);
 		MainScene.scene.add(points);
-		target.visible = false;
+		target.base.visible = false;
+		target.glow.visible = false;
 	},
 
 	addTarget: function(position, tangent) {
-		this.targets.push(Target.create(position, tangent));
+		var newTarget = Target.create(position, tangent);
+		console.log(newTarget);
+		this.targets.push(newTarget);
 
 		if(this.targets.length > this.maxTargets) {
 			MainScene.scene.remove(this.targets[0]);
@@ -46,7 +49,14 @@ var TargetController = {
 			var glow = this.targets[i].glow;
 			var base = this.targets[i].base;
 			var delta = this.clock.getDelta();
-			Target.rotateObject(delta, base, glow);
+			this.rotateObject(delta, base, glow);
 		}
+	},
+
+	rotateObject: function(delta, base, glow) {
+		//base.rotation.x += delta * this.rotValue.x;
+		base.rotation.y += delta * this.animationSpeed;
+		//glow.rotation.x += delta * this.rotValue.x;
+		glow.rotation.y += delta * this.animationSpeed;
 	}
 }

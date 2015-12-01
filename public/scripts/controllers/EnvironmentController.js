@@ -2,7 +2,7 @@
 
 var EnvironmentController = {
 	elements: [],
-	maxElements: 250,
+	maxElements: 180,
 	zDiff: 0.04,
 	init: function() {
 		for(var i = 1; i <= this.maxElements; i++) {
@@ -17,7 +17,7 @@ var EnvironmentController = {
 	getElements: function() {
 		return this.elements;
 	},
-	
+
 	addElement: function(position, tangent) {
 		//var circle = Circle.create(position, tangent);
 		var circle = ImperfectCircle.create(position, tangent);
