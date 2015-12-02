@@ -1,11 +1,12 @@
 "use strict";
 
 var ImperfectCircle = {
-	material: new THREE.LineBasicMaterial( { color: 0xD490D2, linewidth: 4, opacity: 0.5, blending: THREE.AdditiveBlending, transparent: true } ),
+	color1: 0xD490D2,
+	color2: 0x44FF00,
 	axis: new THREE.Vector3(),
 	zAxis: new THREE.Vector3(0, 0, -1),
 
-	create: function(position, tangent) {
+	create: function(position, tangent, even) {
 		var circleGeometry = new THREE.Geometry();
 
 		var radius = 50;
@@ -26,8 +27,9 @@ var ImperfectCircle = {
 			circleGeometry.vertices.push(new THREE.Vector3(x, y, 0));
 			point = point.next;
 		}
+		var material = new THREE.LineBasicMaterial( { color: this.color1, linewidth: 4, opacity: 0.5, blending: THREE.AdditiveBlending, transparent: true } );
 
-		var circle = new THREE.Line(circleGeometry, this.material);
+		var circle = new THREE.Line(circleGeometry, material);
 		circle.position.x = position.x;
 		circle.position.y = position.y;
 		circle.position.z = position.z;

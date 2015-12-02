@@ -20,7 +20,14 @@ var EnvironmentController = {
 
 	addElement: function(position, tangent) {
 		//var circle = Circle.create(position, tangent);
-		var circle = ImperfectCircle.create(position, tangent);
+		var even;
+		if(this.elements.length % 2 == 0) {
+			even = false;
+		}
+		else {
+			even = true;
+		}
+		var circle = ImperfectCircle.create(position, tangent, even);
 		this.elements.push(circle);
 
 		if(this.elements.length > this.maxElements) {

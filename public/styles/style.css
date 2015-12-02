@@ -19,24 +19,34 @@ h1.logo {
 	text-shadow: 0 0 5px #fff , 0 0 10px #fff , 0 0 20px #D490D2 , 0 0 30px #D490D2 , 0 0 40px #D490D2 , 0 0 50px #D490D2;
 }
 #gui {
+	color: #fff;
+}
+#gui #score {
 	position: fixed;
 	top: 30px;
 	left: 30px;
-	right: 30px;
-	color: #fff;
-	overflow: hidden;
-}
-#gui #score {
 	font-size: 3em;
 	letter-spacing: 0.2em;
 	margin-bottom: 30px;
-	float: left;
 }
 #gui #exit {
-	float: right;
+	position: fixed;
+	top: 30px;
+	right: 30px;
+	text-align: right;
 }
 #gui a {
 	width: 200px;
+}
+
+#gui #shotclock {
+	position: fixed;
+	top: 100px;
+	left: 0px;
+	right: 0px;
+	text-align: center;
+	font-size: 5em;
+	letter-spacing: 0.2em;
 }
 
 #input-data {

@@ -12,8 +12,13 @@ var ShootController = {
 	init: function() {
 		var self = this;
 		Shot.init();
-
-		setInterval(function() { self.createShot() }, 2000);
+		setInterval(function() {
+			var time = $("#shotclock").html();
+			$("#shotclock").html(time - 1);
+			if(time - 1 == 0) {
+				self.createShot();
+			}
+		}, 1000);
 	},
 	createShot: function() {
 		if(this.shootObject) {
@@ -31,6 +36,8 @@ var ShootController = {
 			MainScene.camera.position,
 			vector.sub(MainScene.camera.position).normalize()
 		);
+
+		$("#shotclock").html(3);
 	},
 
 	animateShot: function() {
@@ -53,7 +60,6 @@ var ShootController = {
 				if(!target.base.visible)
 					return;
 
-				this.prevHitTarget = target;
 				if( this.distance(target.base.position, this.shootObject.mesh.position) < threshold) {
 					TargetController.createSparks(target);
 					this.score += 10;

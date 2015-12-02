@@ -20,7 +20,6 @@ var Shot = {
 	create: function(position) {
 		if(this.emitter)
 	    	this.shootObject.removeEmitter(this.emitter);
-
 		this.shootObject.mesh.position.set(position.x, position.y, position.z);
 
 		this.emitter = new SPE.Emitter({

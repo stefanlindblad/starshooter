@@ -26,6 +26,7 @@ var PhoneInputController = {
     })
     socket.on('update movement', function(msg){
       if(!self.infoIsHidden) {
+        AudioController.init();
         self.infoIsHidden = true;
         $('#phoneinput-info').css('display', 'none');
       }

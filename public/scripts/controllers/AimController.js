@@ -3,8 +3,8 @@
 var AimController = {
   originalZ: -2,
   aim: null,
-  aimSpeed: 20,
-  movementThreshold: 5,
+  aimSpeed: 100,
+  movementThreshold: 2,
   screenPosition: {
     x: 0,
     y: 0
@@ -24,7 +24,6 @@ var AimController = {
   },
 
   moveAimPhone: function(x, y) {
-
     var distance = Math.sqrt(Math.pow(x - this.screenPosition.x, 2) + Math.pow(y - this.screenPosition.y, 2));
     if(distance < this.movementThreshold) {
       return;
@@ -36,6 +35,7 @@ var AimController = {
     y *= 5;
     x = window.innerWidth / 2 + x;
     y = window.innerHeight / 2 - y;
+    y += window.innerHeight / 20;
     var vector = new THREE.Vector3(
       x / window.innerWidth * 2 - 1,
       - (y / window.innerHeight) * 2 + 1,
