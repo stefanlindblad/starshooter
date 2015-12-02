@@ -6,10 +6,16 @@ var TravelController = {
 	speed: 0.00004,
 	travelCounter: 0,
 	targetCounter: 0,
+	rotate: false,
 	prevRotZ: 0,
 
 	init: function() {
 		this.createPath();
+
+		var self = this;
+		setInterval(function() {
+			self.rotate = true;
+		}, 46000);
 	},
 
 	createPath: function() {
@@ -58,8 +64,11 @@ var TravelController = {
 			MainScene.camera.position.copy(self.path.getPointAt(this.travelCounter));
 			MainScene.mainLight.position.set(MainScene.camera.position);
 			MainScene.camera.lookAt(self.path.getPointAt(this.travelCounter+this.speed));
-			MainScene.camera.rotation.z += 0.005 + this.prevRotZ;
-			this.prevRotZ = MainScene.camera.rotation.z;
+			if(this.rotate) {
+				MainScene.camera.rotation.z += 0.005 + this.prevRotZ;
+				this.prevRotZ = MainScene.camera.rotation.z;
+			}
+
 			this.travelCounter += this.speed;
 			callback(false);
 		}
