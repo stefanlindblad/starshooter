@@ -7,20 +7,20 @@ var AudioController = {
 		this.audio = new Audio('audio/hotline-miami.mp3');
 		this.audio.play();
 
-		//var self = this;
-		//setInterval(function() { self.makeSceneNice() }, 1000);
+		var self = this;
+		setTimeout(function() {
+			setInterval(function() { self.makeSceneNice() }, 1440);
+		}, 60);
+
 	},
 
 	makeSceneNice: function() {
-		this.color = !this.color;
-		for(var i = 0; i < EnvironmentController.elements.length; i++) {
-			var element = EnvironmentController.elements[i];
-			element.material.color.setHex(ImperfectCircle.color2);
-			setTimeout(function() {
-				element.material.color.setHex(ImperfectCircle.color1);
-
-			}, 100);
-
+	  this.color = !this.color;
+		var order = Math.floor((Math.random() * 360) + 1);
+		ImperfectCircle.color1 = 'hsl(' + order + '100%, 62%)';
+	  for(var i = 50; i < EnvironmentController.elements.length; i++) {
+	  	var element = EnvironmentController.elements[i];
+    	element.material.color.setHSL(order/360, 1, 0.62);
 		}
 	},
 
