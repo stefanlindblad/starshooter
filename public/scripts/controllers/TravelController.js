@@ -20,13 +20,13 @@ var TravelController = {
 
 	createPath: function() {
 		var pointsLength = 100;
-		var pointZdiff = -200;
+		var pointZdiff = -550;
 
 		var prevX = 0;
 		var prevY = 0;
 		for(var i = 0; i < pointsLength; i++) {
-			var x = prevX + chance.floating({min: -10, max: 10});
-			var y = prevY + chance.floating({min: -10, max: 10});
+			var x = prevX + chance.floating({min: -100, max: 100});
+			var y = prevY + chance.floating({min: -100, max: 100});
 			var z = i * pointZdiff;
 			prevX = x;
 			prevY = y;
@@ -44,8 +44,8 @@ var TravelController = {
 		var prevX = 0;
 		var prevY = 0;
 		for(var i = 0; i < pointsLength; i++) {
-			var x = prevX + chance.floating({min: -5, max: 5});
-			var y = prevY + chance.floating({min: -5, max: 5});
+			var x = prevX + chance.floating({min: -100, max: 100});
+			var y = prevY + chance.floating({min: -100, max: 100});
 			var z = i * pointZdiff;
 			prevX = x;
 			prevY = y;
