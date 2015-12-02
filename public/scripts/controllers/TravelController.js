@@ -6,6 +6,7 @@ var TravelController = {
 	speed: 0.00004,
 	travelCounter: 0,
 	targetCounter: 0,
+	prevRotZ: 0,
 
 	init: function() {
 		this.createPath();
@@ -52,12 +53,13 @@ var TravelController = {
 	},
 
 	moveCamera: function(callback) {
-		if(this.travelCounter < 0.8) {
+		if(this.travelCounter < 1-this.speed) {
 			var self = this;
 			MainScene.camera.position.copy(self.path.getPointAt(this.travelCounter));
 			MainScene.mainLight.position.set(MainScene.camera.position);
 			MainScene.camera.lookAt(self.path.getPointAt(this.travelCounter+this.speed));
-
+			MainScene.camera.rotation.z += 0.005 + this.prevRotZ;
+			this.prevRotZ = MainScene.camera.rotation.z;
 			this.travelCounter += this.speed;
 			callback(false);
 		}
