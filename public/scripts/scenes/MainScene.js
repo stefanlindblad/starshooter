@@ -44,6 +44,17 @@ var MainScene = {
 		TravelController.mainLoop();
 		ShootController.animateShot();
 		ShootController.collisionDetection(TargetController.getTargets(), 8);
+		if(AudioController.audio) {
+			if(AudioController.audio.ended)
+				this.endGame();
+		}
     	this.renderer.render( this.scene, this.camera );
+	},
+
+	endGame: function() {
+		$("#endgame").css("display", "table");
+		$("#gui").css("display", "none");
+		this.camera = null;
+		this.scene = null;
 	}
 }

@@ -70,7 +70,7 @@ var TravelController = {
 		var self = this;
 		this.moveCamera(function(error) {
 			if(error) {
-				console.log("GAME ENDED!")
+				MainScene.endGame();
 				return;
 			}
 

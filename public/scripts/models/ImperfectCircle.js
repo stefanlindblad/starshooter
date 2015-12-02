@@ -2,7 +2,7 @@
 
 var ImperfectCircle = {
 	color1: 0xD490D2,
-	color2: 0x44FF00,
+	color2: 0x90D4A8,
 	axis: new THREE.Vector3(),
 	zAxis: new THREE.Vector3(0, 0, -1),
 
