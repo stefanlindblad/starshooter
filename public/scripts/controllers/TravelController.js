@@ -86,7 +86,8 @@ var TravelController = {
 				var dZ = EnvironmentController.zDiff; // + chance.floating({ min: -0.01, max: 0.01 });
 				EnvironmentController.addElement(
 					self.path.getPointAt(self.travelCounter+dZ),
-					self.path.getTangentAt(self.travelCounter+dZ)
+					self.path.getTangentAt(self.travelCounter+dZ),
+					self.travelCounter
 				)
 			}
 		});
