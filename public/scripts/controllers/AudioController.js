@@ -9,8 +9,8 @@ var AudioController = {
 
 		var self = this;
 		setTimeout(function() {
-			setInterval(function() { self.makeSceneNice() }, 1440);
-		}, 60);
+			setInterval(function() { self.makeSceneNice() }, 1260);
+		}, 800);
 
 	},
 
