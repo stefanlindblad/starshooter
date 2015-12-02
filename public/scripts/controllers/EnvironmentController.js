@@ -2,7 +2,7 @@
 
 var EnvironmentController = {
 	elements: [],
-	maxElements: 500,
+	maxElements: 180,
 	zDiff: 0.016,
 	init: function() {
 		for(var i = 1; i <= this.maxElements; i++) {
