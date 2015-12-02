@@ -25,6 +25,7 @@ var SelectInputController = {
     AimController.init();
     MouseInputController.init();
     AudioController.init();
+    Rain.init();
     this.hideInputSelection();
   },
 
