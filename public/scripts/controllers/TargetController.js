@@ -32,7 +32,6 @@ var TargetController = {
 
 	addTarget: function(position, tangent) {
 		var newTarget = Target.create(position, tangent);
-		console.log(newTarget);
 		this.targets.push(newTarget);
 
 		if(this.targets.length > this.maxTargets) {

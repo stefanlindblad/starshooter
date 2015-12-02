@@ -1,6 +1,7 @@
 "use strict";
 
 var TravelController = {
+	points: [],
 	path: null,
 	speed: 0.00004,
 	travelCounter: 0,
@@ -10,10 +11,9 @@ var TravelController = {
 		this.createPath();
 	},
 
-	createPath: function(callback) {
+	createPath: function() {
 		var pointsLength = 100;
 		var pointZdiff = -200;
-		var points = [];
 
 		var prevX = 0;
 		var prevY = 0;
@@ -23,16 +23,36 @@ var TravelController = {
 			var z = i * pointZdiff;
 			prevX = x;
 			prevY = y;
-			points[i] = new THREE.Vector3(x, y, z);
+			this.points.push(new THREE.Vector3(x, y, z));
 		}
-		this.path = new THREE.SplineCurve3(points);
+		this.path = new THREE.SplineCurve3(this.points);
 
 		EnvironmentController.init();
 		TargetController.init();
 	},
 
+	extendPath: function(callback) {
+		var pointsLength = 80;
+		var pointZdiff = -200;
+		var prevX = 0;
+		var prevY = 0;
+		for(var i = 0; i < pointsLength; i++) {
+			var x = prevX + chance.floating({min: -5, max: 5});
+			var y = prevY + chance.floating({min: -5, max: 5});
+			var z = i * pointZdiff;
+			prevX = x;
+			prevY = y;
+			this.points.push(new THREE.Vector3(x, y, z));
+		}
+		console.log(this.points.length);
+		this.points = this.points.slice(80, 180);
+		console.log(this.points.length);
+		this.path = new THREE.SplineCurve3(this.points);
+		callback();
+	},
+
 	moveCamera: function(callback) {
-		if(this.travelCounter < 1-this.speed) {
+		if(this.travelCounter < 0.8) {
 			var self = this;
 			MainScene.camera.position.copy(self.path.getPointAt(this.travelCounter));
 			MainScene.mainLight.position.set(MainScene.camera.position);
@@ -42,7 +62,7 @@ var TravelController = {
 			callback(false);
 		}
 		else {
-			callback(true);
+			callback(true) // game ended
 		}
 	},
 

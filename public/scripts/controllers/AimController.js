@@ -12,8 +12,8 @@ var AimController = {
 
   init: function() {
 
-	  var geometry = new THREE.RingGeometry( 0.05, 0.058, 32 );
-	  var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.DoubleSide } );
+	  var geometry = new THREE.RingGeometry( 0.05, 0.06, 6, 1, 11, 6.3 );
+	  var material = new THREE.MeshBasicMaterial( { color: 0x00FFB7, side: THREE.FronSide, transparent: true, opacity: 0.6 } );
 	  this.aim = new THREE.Mesh( geometry, material );
 	  this.aim.position.x = 0;
 	  this.aim.position.y = 0;

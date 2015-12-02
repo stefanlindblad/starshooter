@@ -14,16 +14,10 @@ var ImperfectCircle = {
 		var twoPi = 2*Math.PI;
 		var phase = Math.random()*twoPi;
 
-		//generate the random function that will be used to vary the radius, 9 iterations of subdivision
 		var pointList = this.generatePoints(5);
 		var point = pointList.first;
 		var rad, theta;
 		var x, y;
-		/*var theta = phase;
-		var rad = minRad + point.y*(maxRad - minRad);
-		var x = rad*Math.cos(theta);
-		var y = rad*Math.sin(theta);
-		circleGeometry.vertices.push(new THREE.Vector3(x, y, 0));*/
 		while (point != null) {
 			theta = twoPi*point.x + phase;
 			rad = minRad + point.y*(maxRad - minRad);
