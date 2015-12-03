@@ -76,9 +76,9 @@ var Rain = {
 
 		var material = new THREE.PointsMaterial( {
 			size: 32,
-			map : THREE.ImageUtils.loadTexture("textures/particle3.png"),
+			map : THREE.ImageUtils.loadTexture("textures/red_circle_light.png"),
 			transparent: true,
-			alphaTest: 0.1
+			//alphaTest: 0.1
 		});
 
 		this.particleSystem = new THREE.Points( geometry, material );
@@ -88,12 +88,10 @@ var Rain = {
 
 	renderRain : function() {
 
-		// console.log("RENDER");
 		if (this.particleSystem == null) {
 			return;
 		}
 
-		this.numero++;
 		// Initial speed
 		var initialSpeed = 100.0;
 		// Direction of wind
