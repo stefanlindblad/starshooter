@@ -1,7 +1,7 @@
 "use strict";
 
 var PhoneInputController = {
-
+  diff: 0,
   calibrateVars: {
   	direction: 0,
   	tilt: 0,
@@ -30,9 +30,6 @@ var PhoneInputController = {
         self.infoIsHidden = true;
         $('#phoneinput-info').css('display', 'none');
       }
-      if(msg.dir > 180) {
-        msg.dir -= 360;
-      }
       self.deviceOrientationHandler(msg.tiltLR, msg.tiltFB, msg.dir);
       if(!self.calibrateVars.isCalibrated) {
         self.doCalibrate(msg.dir, msg.tiltFB);
@@ -42,6 +39,13 @@ var PhoneInputController = {
   },
 
 	deviceOrientationHandler: function (tiltLR, tiltFB, dir) {
+    if(360 + this.diff < dir && dir < 360) {
+      dir -= 360;
+    }
+    if(0 < dir && dir < this.diff) {
+      dir += 360;
+      console.log("heeej");
+    }
     $("#tilt-LR").html(Math.round(tiltLR));
     $("#tilt-FB").html(Math.round(tiltFB));
     $("#direction").html(Math.round(dir));
@@ -51,6 +55,7 @@ var PhoneInputController = {
   },
 
   doCalibrate: function (dir, tiltFB) {
+    this.diff = dir - 180;
     this.calibrateVars.direction = dir;
     this.calibrateVars.tilt = tiltFB;
   },
