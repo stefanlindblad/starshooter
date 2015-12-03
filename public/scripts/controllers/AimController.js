@@ -30,8 +30,8 @@ var AimController = {
     }
     this.screenPosition.x = x;
     this.screenPosition.y = y;
-    x *= 5;
-    y *= 5;
+    x *= (window.innerWidth / 100);
+    y *= (window.innerHeight / 100);
     x = window.innerWidth / 2 + x;
     y = window.innerHeight / 2 - y;
     y += window.innerHeight / 20;

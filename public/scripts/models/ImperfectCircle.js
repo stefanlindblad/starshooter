@@ -31,7 +31,7 @@ var ImperfectCircle = {
 		if (order % 10 == 0)
 			order = Math.floor((Math.random() * 360) + 1);
 		//console.log(order);
-		var material = new THREE.LineBasicMaterial( { color: this.color1, linewidth: 4, opacity: 0.5, blending: THREE.AdditiveBlending, transparent: true } );
+		var material = new THREE.LineBasicMaterial( { color: this.color1, linewidth: 40, opacity: 0.5, blending: THREE.AdditiveBlending, transparent: true } );
 
 		var circle = new THREE.Line(circleGeometry, material);
 		circle.position.x = position.x;
