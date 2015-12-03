@@ -3,7 +3,7 @@
 var EnvironmentController = {
 	elements: [],
 	maxElements: 180,
-	zDiff: 0.02,
+	zDiff: 0.04,
 	init: function() {
 		for(var i = 1; i <= this.maxElements; i++) {
 			var dZ = this.zDiff; // + chance.floating({ min: -0.01, max: 0.01 });

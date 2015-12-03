@@ -76,8 +76,11 @@ var Rain = {
 
 		var material = new THREE.PointsMaterial( { 
 			size: 45, 
-			map : THREE.ImageUtils.loadTexture("../../textures/particle.png"), 
-			vertexColors: THREE.VertexColors } );
+			map : THREE.ImageUtils.loadTexture("textures/particle3.png"), 
+			vertexColors: THREE.VertexColors,
+			alphaTest: 0.5, 
+			transparent: true  
+		});
 
 		this.particleSystem = new THREE.Points( geometry, material );
 		MainScene.scene.add( this.particleSystem );
