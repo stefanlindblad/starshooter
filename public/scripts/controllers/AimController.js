@@ -30,7 +30,6 @@ var AimController = {
     }
     this.screenPosition.x = x;
     this.screenPosition.y = y;
-
     x *= 5;
     y *= 5;
     x = window.innerWidth / 2 + x;
@@ -68,13 +67,12 @@ var AimController = {
       - (y / window.innerHeight) * 2 + 1,
       1
     );
-    this.aim.position.x = vector.x;
-    this.aim.position.y = vector.y;
     var zero = new THREE.Vector3(0, 0, 0);
     var pos = zero;
     var dist = this.aim.position.clone().multiplyScalar(0.5);
     pos = pos.add(vector.multiplyScalar(dist.length()));
-   // this.aim.position.x = pos.x;
-   // this.aim.position.y = pos.y;
+    this.aim.position.x = pos.x;
+    this.aim.position.y = pos.y;
+
   }
 }

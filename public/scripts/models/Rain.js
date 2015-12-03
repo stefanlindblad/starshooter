@@ -2,7 +2,7 @@
 
 var Rain = {
 	particleSystem : null,
-	particlesCount : 3000,
+	particlesCount : 20000,
 	// Horizontal viewing angle
 	alpha : Math.PI/4.0,
 	// Vertical viewing angle
@@ -102,11 +102,11 @@ var Rain = {
 		// Direction of wind
 		var heta = -Math.PI/6.0;
 		// Y direction initial speed
-		var speedY = -1.0;
+		var speedY = -0.5;
 		// Delta time
 		var deltaTime = 0.001;
 		// Gravity
-		var gravity = 1 / (deltaTime * deltaTime);
+		var gravity = 0.5 / (deltaTime * deltaTime);
 
 
 		var positions = this.particleSystem.geometry.attributes.position.array;
