@@ -6,7 +6,7 @@ var ImperfectCircle = {
 	axis: new THREE.Vector3(),
 	zAxis: new THREE.Vector3(0, 0, -1),
 
-	create: function(position, tangent, even, order) {
+	create: function(position, tangent, order) {
 		var circleGeometry = new THREE.Geometry();
 
 		var radius = 50;

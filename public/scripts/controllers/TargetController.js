@@ -35,9 +35,10 @@ var TargetController = {
 		this.targets.push(newTarget);
 
 		if(this.targets.length > this.maxTargets) {
-			MainScene.scene.remove(this.targets[0]);
-			this.targets.shift();
+			MainScene.scene.remove(this.targets[0].glow);
+			MainScene.scene.remove(this.targets[0].base);
 
+			this.targets.shift();
 		}
 	},
 
