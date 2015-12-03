@@ -9,8 +9,6 @@ var TravelController = {
 
 	init: function() {
 		this.createPath();
-
-		var self = this;
 	},
 
 	createPath: function() {
@@ -20,16 +18,14 @@ var TravelController = {
 		var prevX = 0;
 		var prevY = 0;
 		for(var i = 0; i < pointsLength; i++) {
-			var x = prevX + chance.floating({min: -10, max: 10});
-			var y = prevY + chance.floating({min: -10, max: 10});
+			var x = prevX + chance.floating({min: -20, max: 20});
+			var y = prevY + chance.floating({min: -20, max: 20});
 			var z = i * pointZdiff;
 			prevX = x;
 			prevY = y;
 			this.points.push(new THREE.Vector3(x, y, z));
 		}
-		console.log(this.points.length);
 		this.path = new THREE.SplineCurve3(this.points);
-		console.log(this.path.getLength())
 		EnvironmentController.init();
 		TargetController.init();
 	},
@@ -41,18 +37,15 @@ var TravelController = {
 		var prevX = this.points[this.points.length - 1].x;
 		var prevY = this.points[this.points.length - 1].y;
 		this.points = this.points.slice(80);
-		console.log(this.points.length);
 		for(var i = 0; i < pointsLength; i++) {
-			var x = prevX + chance.floating({min: -10, max: 10});
-			var y = prevY + chance.floating({min: -10, max: 10});
+			var x = prevX + chance.floating({min: -20, max: 20});
+			var y = prevY + chance.floating({min: -20, max: 20});
 			var z = i * pointZdiff + lastZ;
 			prevX = x;
 			prevY = y;
 			this.points.push(new THREE.Vector3(x, y, z));
 		}
 		this.path = new THREE.SplineCurve3(this.points);
-		console.log(this.points.length);
-		console.log(this.path.getLength());
 		callback();
 	},
 

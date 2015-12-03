@@ -2,7 +2,7 @@
 
 var Rain = {
 	particleSystem : null,
-	particlesCount : 30000,
+	particlesCount : 3000,
 	// Horizontal viewing angle
 	alpha : Math.PI/4.0,
 	// Vertical viewing angle
@@ -61,7 +61,7 @@ var Rain = {
 			var vy = Math.random();
 			var vz = Math.random();
 
-			color.setRGB( vx, vy, vz );
+			color.setRGB( 1, 1, 1 );
 
 			colors[ i ]     = color.r;
 			colors[ i + 1 ] = color.g;
@@ -76,7 +76,7 @@ var Rain = {
 
 		var material = new THREE.PointsMaterial( { 
 			size: 45, 
-			map : THREE.ImageUtils.loadTexture("../../textures/snowflake.png"), 
+			map : THREE.ImageUtils.loadTexture("../../textures/particle.png"), 
 			vertexColors: THREE.VertexColors } );
 
 		this.particleSystem = new THREE.Points( geometry, material );
@@ -93,11 +93,11 @@ var Rain = {
 
 		this.numero++;
 		// Initial speed
-		var initialSpeed = 100.0;
+		var initialSpeed = 10.0;
 		// Direction of wind
 		var heta = -Math.PI/6.0;
 		// Y direction initial speed
-		var speedY = -10.0;
+		var speedY = -1.0;
 		// Delta time
 		var deltaTime = 0.001;
 		// Gravity
@@ -130,7 +130,7 @@ var Rain = {
 				var vy = Math.random();
 				var vz = Math.random();
 
-				color.setRGB( vx, vy, vz );
+				color.setRGB( 1, 1, 1 );
 
 				colors[ i ]     = color.r;
 				colors[ i + 1 ] = color.g;

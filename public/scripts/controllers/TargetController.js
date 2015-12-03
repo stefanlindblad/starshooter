@@ -3,8 +3,8 @@
 var TargetController = {
 
 	targets: [],
-	maxTargets: 10,
-	zDiff: 0.04,
+	maxTargets: 5,
+	zDiff: 0.06,
 	animationSpeed: 10,
 	clock: new THREE.Clock(),
 
