@@ -47,7 +47,12 @@ var Rain = {
 			var phi = (Math.PI - this.beta)/2.0 + Math.random() * this.beta/2.0;
 			var theta = this.angleCamera - Math.PI - this.alpha/2.0 + this.alpha * Math.random();
 
-			var x = this.positionCamera.x + radius * Math.sin(phi) * Math.sin(theta) + 1000;
+			var rand = Math.random();
+			if (rand > 0.5) {
+				var x = this.positionCamera.x + radius * Math.sin(phi) * Math.sin(theta);
+			} else {
+				var x = this.positionCamera.x + radius * Math.sin(phi) * Math.sin(theta) + 2000;
+			}
 			var y = this.positionCamera.y + radius * Math.cos(phi);
 			var z = this.positionCamera.z + radius * Math.sin(phi) * Math.cos(theta);
 
@@ -75,10 +80,10 @@ var Rain = {
 		geometry.computeBoundingSphere();
 
 		var material = new THREE.PointsMaterial( {
-			size: 32,
-			map : THREE.ImageUtils.loadTexture("textures/red_circle_light.png"),
+			size: 60,
+			map : THREE.ImageUtils.loadTexture("textures/particle2.png"),
 			transparent: true,
-			//alphaTest: 0.1
+			alphaTest: 0.1
 		});
 
 		this.particleSystem = new THREE.Points( geometry, material );
@@ -118,7 +123,12 @@ var Rain = {
 				var phi = (Math.PI - this.beta)/2.0 + Math.random() * this.beta/2.0;
 				var theta = this.angleCamera - Math.PI - this.alpha/2.0 + this.alpha * Math.random();			
 
-				var x = this.positionCamera.x + radius * Math.sin(phi) * Math.sin(theta) + 1000;
+				var rand = Math.random();
+				if (rand > 0.5) {
+					var x = this.positionCamera.x + radius * Math.sin(phi) * Math.sin(theta);
+				} else {
+					var x = this.positionCamera.x + radius * Math.sin(phi) * Math.sin(theta) + 2000;
+				}
 				var y = this.positionCamera.y + radius * Math.cos(phi);
 				var z = this.positionCamera.z + radius * Math.sin(phi) * Math.cos(theta);
 
