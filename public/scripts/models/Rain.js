@@ -57,9 +57,9 @@ var Rain = {
 
 			// colors
 
-			var vx = Math.random();
-			var vy = Math.random();
-			var vz = Math.random();
+			//var vx = Math.random();
+			//var vy = Math.random();
+			//var vz = Math.random();
 
 			color.setRGB( 1, 1, 1 );
 
@@ -74,12 +74,11 @@ var Rain = {
 
 		geometry.computeBoundingSphere();
 
-		var material = new THREE.PointsMaterial( { 
-			size: 45, 
-			map : THREE.ImageUtils.loadTexture("textures/particle3.png"), 
-			vertexColors: THREE.VertexColors,
-			alphaTest: 0.5, 
-			transparent: true  
+		var material = new THREE.PointsMaterial( {
+			size: 32,
+			map : THREE.ImageUtils.loadTexture("textures/particle3.png"),
+			transparent: true,
+			alphaTest: 0.1
 		});
 
 		this.particleSystem = new THREE.Points( geometry, material );
@@ -96,7 +95,7 @@ var Rain = {
 
 		this.numero++;
 		// Initial speed
-		var initialSpeed = 10.0;
+		var initialSpeed = 100.0;
 		// Direction of wind
 		var heta = -Math.PI/6.0;
 		// Y direction initial speed
@@ -104,7 +103,7 @@ var Rain = {
 		// Delta time
 		var deltaTime = 0.001;
 		// Gravity
-		var gravity = 9.8 / (deltaTime * deltaTime);
+		var gravity = 1 / (deltaTime * deltaTime);
 
 
 		var positions = this.particleSystem.geometry.attributes.position.array;
@@ -129,9 +128,9 @@ var Rain = {
 				positions[i+1] = y;
 				positions[i+2] = z;
 
-				var vx = Math.random();
-				var vy = Math.random();
-				var vz = Math.random();
+				//var vx = Math.random();
+				//var vy = Math.random();
+				//var vz = Math.random();
 
 				color.setRGB( 1, 1, 1 );
 
@@ -140,7 +139,7 @@ var Rain = {
 				colors[ i + 2 ] = color.b;
 			} else {
 				var vx0 = initialSpeed * Math.cos(heta);
-				var vy0 = -10.0;
+				var vy0 = speedY;
 				var vz0 = initialSpeed * Math.sin(heta);
 
 				positions[i] += vx0 * deltaTime;
