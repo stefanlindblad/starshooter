@@ -9,17 +9,19 @@ var TravelController = {
 
 	init: function() {
 		this.createPath();
+
+		var self = this;
 	},
 
 	createPath: function() {
 		var pointsLength = 100;
-		var pointZdiff = -200;
+		var pointZdiff = -550;
 
 		var prevX = 0;
 		var prevY = 0;
 		for(var i = 0; i < pointsLength; i++) {
-			var x = prevX + chance.floating({min: -10, max: 10});
-			var y = prevY + chance.floating({min: -10, max: 10});
+			var x = prevX + chance.floating({min: -50, max: 50});
+			var y = prevY + chance.floating({min: -50, max: 50});
 			var z = i * pointZdiff;
 			prevX = x;
 			prevY = y;
@@ -37,8 +39,8 @@ var TravelController = {
 		var prevX = 0;
 		var prevY = 0;
 		for(var i = 0; i < pointsLength; i++) {
-			var x = prevX + chance.floating({min: -5, max: 5});
-			var y = prevY + chance.floating({min: -5, max: 5});
+			var x = prevX + chance.floating({min: -50, max: 50});
+			var y = prevY + chance.floating({min: -50, max: 50});
 			var z = i * pointZdiff;
 			prevX = x;
 			prevY = y;
@@ -52,7 +54,7 @@ var TravelController = {
 	},
 
 	moveCamera: function(callback) {
-		if(this.travelCounter < 0.8) {
+		if(this.travelCounter < 1-this.speed) {
 			var self = this;
 			MainScene.camera.position.copy(self.path.getPointAt(this.travelCounter));
 			MainScene.mainLight.position.set(MainScene.camera.position);
@@ -70,7 +72,7 @@ var TravelController = {
 		var self = this;
 		this.moveCamera(function(error) {
 			if(error) {
-				console.log("GAME ENDED!")
+				MainScene.endGame();
 				return;
 			}
 
@@ -86,7 +88,8 @@ var TravelController = {
 				var dZ = EnvironmentController.zDiff; // + chance.floating({ min: -0.01, max: 0.01 });
 				EnvironmentController.addElement(
 					self.path.getPointAt(self.travelCounter+dZ),
-					self.path.getTangentAt(self.travelCounter+dZ)
+					self.path.getTangentAt(self.travelCounter+dZ),
+					self.travelCounter
 				)
 			}
 		});

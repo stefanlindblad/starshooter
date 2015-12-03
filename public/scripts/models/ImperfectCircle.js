@@ -2,11 +2,11 @@
 
 var ImperfectCircle = {
 	color1: 0xD490D2,
-	color2: 0x44FF00,
+	color2: 0x90D4A8,
 	axis: new THREE.Vector3(),
 	zAxis: new THREE.Vector3(0, 0, -1),
 
-	create: function(position, tangent, even) {
+	create: function(position, tangent, even, order) {
 		var circleGeometry = new THREE.Geometry();
 
 		var radius = 50;
@@ -27,6 +27,10 @@ var ImperfectCircle = {
 			circleGeometry.vertices.push(new THREE.Vector3(x, y, 0));
 			point = point.next;
 		}
+		order = Math.floor(order*1000) % 360;
+		if (order % 10 == 0)
+			order = Math.floor((Math.random() * 360) + 1);
+		//console.log(order);
 		var material = new THREE.LineBasicMaterial( { color: this.color1, linewidth: 4, opacity: 0.5, blending: THREE.AdditiveBlending, transparent: true } );
 
 		var circle = new THREE.Line(circleGeometry, material);

@@ -25,9 +25,11 @@ h1.logo {
 	position: fixed;
 	top: 30px;
 	left: 30px;
+	margin-bottom: 30px;
+}
+#score {
 	font-size: 3em;
 	letter-spacing: 0.2em;
-	margin-bottom: 30px;
 }
 #gui #exit {
 	position: fixed;
@@ -61,14 +63,19 @@ h1.logo {
 	color: #fff;
 }
 #controller-selection, 
-#phoneinput-info {
+#phoneinput-info,
+#endgame {
 	color: #fff;
 	background: #000;
 	position: fixed;
 	text-align: center;
 	width: 100%;
 }
-#controller-selection a.button {
+#endgame #score {
+	margin-bottom: 30px;
+}
+#controller-selection a.button,
+#endgame a.button {
 	width: 200px;
 	margin: 0 10px;
 }

@@ -2,37 +2,29 @@
 
 var AudioController = {
 	color: false,
-
+	audio: null,
 	init: function() {
-		var audio = new Audio('audio/hotline-miami.mp3');
-		audio.play();
+		this.audio = new Audio('audio/hotline-miami.mp3');
+		this.audio.play();
 
 		var self = this;
-		setInterval(function() { self.makeSceneNice() }, 2000);
+		setTimeout(function() {
+			setInterval(function() { self.makeSceneNice() }, 1260);
+		}, 800);
+
 	},
 
 	makeSceneNice: function() {
-		this.color = !this.color;
-		/*for(var i = 0; i < EnvironmentController.elements.length; i++) {
-			var element = EnvironmentController.elements[i];
-			if(i % 2 == 0) {
-				if(this.color) {
-					element.material.color.setHex(0x44FF00);
-				}
-				/*else {
-					element.material.color.setHex(0x44FF00);
-				}
-			}
-			else {
-				if(this.color) {
-					element.material.color.setHex(0xD490D2);
-				}
-				else {
-					element.material.color.setHex(0xD490D2);
-				}
-			}
+	  this.color = !this.color;
+		var order = Math.floor((Math.random() * 360) + 1);
+		ImperfectCircle.color1 = 'hsl(' + order + '100%, 62%)';
+	  for(var i = 40; i < EnvironmentController.elements.length; i++) {
+	  	var element = EnvironmentController.elements[i];
+    	element.material.color.setHSL(order/360, 1, 0.62);
+		}
+	},
 
-		}*/
-
+	colorPulse: function(i, elements) {
+		var element = elements[i];
 	}
 }
