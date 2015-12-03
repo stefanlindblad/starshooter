@@ -44,6 +44,7 @@ var MainScene = {
 		TravelController.mainLoop();
 		ShootController.animateShot();
 		ShootController.collisionDetection(TargetController.getTargets(), 8);
+		Rain.renderRain();
     	this.renderer.render( this.scene, this.camera );
 	}
 }
