@@ -4,9 +4,7 @@ var Target = {
 	geometry: new THREE.SphereGeometry(chance.floating({min: 5, max: 7.5}), 32, 16),
 	axis: new THREE.Vector3(),
 	zAxis: new THREE.Vector3(0, 0, -1),
-	rotValue: new THREE.Vector3(chance.floating({min: TargetController.animationSpeed/2, max: TargetController.animationSpeed}), 
-							    chance.floating({min: TargetController.animationSpeed/2, max: TargetController.animationSpeed}), 
-							    0),
+	rotAxis: null,
 
 	create: function(position, tangent, counter) {
 		var baseTexture = THREE.ImageUtils.loadTexture( "scripts/models/targetTexture.jpg" );
@@ -27,6 +25,7 @@ var Target = {
 											});
 		var baseTarget = new THREE.Mesh( this.geometry, baseMaterial );
 		var glowTarget = new THREE.Mesh( this.geometry.clone(), glowMaterial );
+		this.rotAxis = chance.integer({min: 0, max: 2});
 		baseTarget.position.set(position.x, position.y, position.z);
 		glowTarget.position.set(position.x, position.y, position.z);
 		glowTarget.scale.multiplyScalar(1.2);
@@ -46,7 +45,8 @@ var Target = {
 		MainScene.scene.add(glowTarget);
 		return {
 			base: baseTarget,
-			glow: glowTarget
+			glow: glowTarget,
+			rot: this.rotAxis
 		}
 	},
 

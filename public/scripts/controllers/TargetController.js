@@ -5,7 +5,7 @@ var TargetController = {
 	targets: [],
 	maxTargets: 5,
 	zDiff: 0.06,
-	animationSpeed: 10,
+	animationSpeed: 0.35,
 	clock: new THREE.Clock(),
 
 	init: function() {
@@ -44,20 +44,30 @@ var TargetController = {
 	},
 
 	animateTargets: function() {
-		for(var i = 0; i < this.targets.length; i++) {
-			//if(i<this.targets.length-1)
-			//	console.log(this.targets[i] === this.targets[i+1]);
+		var length = this.targets.length;
+		var delta = this.clock.getDelta();
+		for(var i = 0; i < length; i++) {
+			var rot = this.targets[i].rot;
 			var glow = this.targets[i].glow;
 			var base = this.targets[i].base;
-			var delta = this.clock.getDelta();
-			this.rotateObject(delta, base, glow);
+			this.rotateObject(delta, base, glow, rot);
 		}
 	},
 
-	rotateObject: function(delta, base, glow) {
-		//base.rotation.x += delta * this.rotValue.x;
-		base.rotation.y += delta * this.animationSpeed;
-		//glow.rotation.x += delta * this.rotValue.x;
-		glow.rotation.y += delta * this.animationSpeed;
+	rotateObject: function(delta, base, glow, rot) {
+		if(rot < 1) {
+			base.rotation.x += delta * this.animationSpeed;
+			glow.rotation.x += delta * this.animationSpeed;
+			return;
+		}
+		if(rot < 2) {
+			base.rotation.y += delta * this.animationSpeed;
+			glow.rotation.y += delta * this.animationSpeed;	
+			return;
+		}
+		if(rot < 3) {
+			base.rotation.z += delta * this.animationSpeed;
+			glow.rotation.z += delta * this.animationSpeed;
+		}
 	}
 }
