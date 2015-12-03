@@ -3,8 +3,8 @@
 var TargetController = {
 
 	targets: [],
-	maxTargets: 5,
-	zDiff: 0.05,
+	maxTargets: 10,
+	zDiff: 0.04,
 	animationSpeed: 10,
 	clock: new THREE.Clock(),
 
@@ -13,7 +13,8 @@ var TargetController = {
 		for(var i = 0; i <= this.maxTargets; i++) {
 			this.addTarget(
 				TravelController.path.getPointAt(this.zDiff/this.maxTargets * i),
-				TravelController.path.getTangentAt(this.zDiff/this.maxTargets * i)
+				TravelController.path.getTangentAt(this.zDiff/this.maxTargets * i),
+				0
 			)
 		};
 	},
@@ -30,8 +31,8 @@ var TargetController = {
 		target.glow.visible = false;
 	},
 
-	addTarget: function(position, tangent) {
-		var newTarget = Target.create(position, tangent);
+	addTarget: function(position, tangent, counter) {
+		var newTarget = Target.create(position, tangent, counter);
 		this.targets.push(newTarget);
 
 		if(this.targets.length > this.maxTargets) {
