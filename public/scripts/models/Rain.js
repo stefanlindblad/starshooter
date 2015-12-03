@@ -38,8 +38,8 @@ var Rain = {
 
 		var n = 1000;
 
-		for ( var i = 0; i < positions.length; i += 3 ) {
 
+		for ( var i = 0; i < positions.length; i += 3 ) {
 			// positions
 
 			var dmax = this.height * this.hp / (2.0 * Math.tan(this.beta/2));
@@ -74,7 +74,10 @@ var Rain = {
 
 		geometry.computeBoundingSphere();
 
-		var material = new THREE.PointsMaterial( { size: 15, vertexColors: THREE.VertexColors } );
+		var material = new THREE.PointsMaterial( { 
+			size: 45, 
+			map : THREE.ImageUtils.loadTexture("../../textures/snowflake.png"), 
+			vertexColors: THREE.VertexColors } );
 
 		this.particleSystem = new THREE.Points( geometry, material );
 		MainScene.scene.add( this.particleSystem );
@@ -83,10 +86,12 @@ var Rain = {
 
 	renderRain : function() {
 
+		// console.log("RENDER");
 		if (this.particleSystem == null) {
 			return;
 		}
 
+		this.numero++;
 		// Initial speed
 		var initialSpeed = 100.0;
 		// Direction of wind
@@ -104,10 +109,11 @@ var Rain = {
 		var color = new THREE.Color();
 
 		var n = 1000;
+		this.positionCamera = MainScene.camera.position;
 
 		for (var i = 0; i < positions.length; i += 3) {
 			if (positions[i+1] < -this.hp) {
-				var dmax = this.height * this.hp / (2.0 * Math.tan(this.beta/2));
+				var dmax = this.height * this.hp * 0.1 / (2.0 * Math.tan(this.beta/2));
 				var radius = this.dnear + (dmax - this.dnear) * Math.random();
 				var phi = (Math.PI - this.beta)/2.0 + Math.random() * this.beta/2.0;
 				var theta = this.angleCamera - Math.PI - this.alpha/2.0 + this.alpha * Math.random();			
@@ -139,7 +145,6 @@ var Rain = {
 				positions[i+2] += vz0 * deltaTime;
 			}
 		}
-
 
 		this.particleSystem.geometry.attributes.position.needsUpdate = true;
 

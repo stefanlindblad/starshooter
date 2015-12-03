@@ -43,7 +43,8 @@ var MainScene = {
 		TWEEN.update();
 		TravelController.mainLoop();
 		ShootController.animateShot();
-		ShootController.collisionDetection(TargetController.getTargets(), 8);
+		ShootController.collisionDetection(TargetController.getTargets(), 12);
+		Rain.renderRain();
 		if(AudioController.audio) {
 			if(AudioController.audio.ended)
 				this.endGame();

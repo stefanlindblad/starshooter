@@ -8,7 +8,7 @@ var Target = {
 							    chance.floating({min: TargetController.animationSpeed/2, max: TargetController.animationSpeed}), 
 							    0),
 
-	create: function(position, tangent) {
+	create: function(position, tangent, counter) {
 		var baseTexture = THREE.ImageUtils.loadTexture( "scripts/models/targetTexture.jpg" );
 		var baseMaterial = new THREE.MeshBasicMaterial( { map: baseTexture } );
 		var glowMaterial = new THREE.ShaderMaterial({
@@ -30,7 +30,9 @@ var Target = {
 		baseTarget.position.set(position.x, position.y, position.z);
 		glowTarget.position.set(position.x, position.y, position.z);
 		glowTarget.scale.multiplyScalar(1.2);
-		var randomFactor = this.randomPosition(-10,10);
+		
+		var hd = (100 * counter) / 2;
+		var randomFactor = this.randomPosition(-40,40, -hd,hd, -0,0);
 		baseTarget.position.add(randomFactor);
 		glowTarget.position.add(randomFactor);
 
@@ -48,10 +50,10 @@ var Target = {
 		}
 	},
 
-	randomPosition: function(min, max) {
-		var x = chance.floating({min: min, max: max});
-		var y = chance.floating({min: min, max: max});
-		var z = chance.floating({min: min, max: max});
+	randomPosition: function(minX, maxX, minY, maxY, minZ, maxZ) {
+		var x = chance.floating({min: minX, max: maxX});
+		var y = chance.floating({min: minY, max: maxY});
+		var z = chance.floating({min: minZ, max: maxZ});
 		return new THREE.Vector3( x, y, z );
 	}
 }

@@ -93,7 +93,8 @@ var TravelController = {
 			if(TargetController.targets[0].base.position.z > MainScene.camera.position.z) {
 				TargetController.addTarget(
 					self.path.getPointAt(self.travelCounter+TargetController.zDiff),
-					self.path.getTangentAt(self.travelCounter+TargetController.zDiff)
+					self.path.getTangentAt(self.travelCounter+TargetController.zDiff),
+					self.travelCounter
 				)
 			}
 			if(EnvironmentController.elements[0].position.z > MainScene.camera.position.z) {
