@@ -66,15 +66,16 @@ var AimController = {
     var vector = new THREE.Vector3(
       x / window.innerWidth * 2 - 1,
       - (y / window.innerHeight) * 2 + 1,
-      1
+      0.5
     );
-    this.aim.position.x = vector.x;
-    this.aim.position.y = vector.y;
     var zero = new THREE.Vector3(0, 0, 0);
     var pos = zero;
     var dist = this.aim.position.clone().multiplyScalar(0.5);
     pos = pos.add(vector.multiplyScalar(dist.length()));
-   // this.aim.position.x = pos.x;
-   // this.aim.position.y = pos.y;
+    this.aim.position.x = vector.x;
+    this.aim.position.y = vector.y;
+    //this.aim.position.x = pos.x;
+    //this.aim.position.y = pos.y;
+
   }
 }
