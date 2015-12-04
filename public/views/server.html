@@ -8,7 +8,7 @@
 
   <body>
     <p id="connect-error" style="display:none;">Another server is already connected, and only one at the time is allowed!</p>
-    <div id="input-data" style="">
+    <div id="input-data" style="display:none;">
       <table>
         <tr>
           <td>Tilt Left/Right [gamma]</td>
@@ -25,12 +25,7 @@
       </table>
       <p>r = recalibrate controls</p>
     </div>
-    <div id="gui" style="display:none;">
-      <div id="score"><span>Score: </span><span class="holder">0</span></div>
-      <div id="exit"><a href="" id="exitgame-button" class="button">Exit</a></div>
-      <div id="shotclock">3</div>
-    </div>
-    <div id="controller-selection" class="table">
+    <div id="controller-selection" class="fade-in table">
       <div class="table-cell">
         <h1 class="logo">Starshooter</h1>
         <p>Select controls</strong></p>
@@ -43,7 +38,7 @@
         <p>Connect your phone and the game will start.</p>
       </div>
     </div>
-    <div id="endgame" class="table" style="display:none;">
+    <div id="endgame" class="fade-in table" style="display:none;">
       <div class="table-cell">
               <h1 class="logo">Game over</h1>
               <p>Final score:</p>
@@ -51,7 +46,13 @@
               <div><a href="" class="button">Play again</a></div>
       </div>
     </div>
-
+    <div id="aim" style="display:none;">
+    </div>
+    <div id="gui" class="fade-in" style="display:none;">
+      <div id="score"><span>Score: </span><span class="holder">0</span></div>
+      <div id="exit"><a href="" id="exitgame-button" class="button">Exit</a></div>
+      <div id="shotclock">3</div>
+    </div>
     <script src="socket.io/socket.io.js"></script>
     <script src="bower_components/threejs/build/three.min.js"></script>
     <script src="scripts/libs/SPE.min.js"></script>

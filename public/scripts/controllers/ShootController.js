@@ -29,9 +29,8 @@ var ShootController = {
 		this.lastCameraPos = MainScene.camera.position.z;
 
 		this.shootObject = Shot.create(MainScene.camera.position);
-		var vector = new THREE.Vector3(AimController.aim.position.x, AimController.aim.position.y, 1);
+		var vector = new THREE.Vector3(AimController.screenPosition.x, AimController.screenPosition.y, 1);
 		vector.unproject(MainScene.camera);
-
 		this.shootRay = new THREE.Ray(
 			MainScene.camera.position,
 			vector.sub(MainScene.camera.position).normalize()

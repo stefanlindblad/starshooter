@@ -80,7 +80,7 @@ var Rain = {
 		geometry.computeBoundingSphere();
 
 		var material = new THREE.PointsMaterial( {
-			size: 60,
+			size: 22,
 			map : THREE.ImageUtils.loadTexture("textures/particle2.png"),
 			transparent: true,
 			alphaTest: 0.1

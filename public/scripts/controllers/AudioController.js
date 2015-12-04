@@ -18,7 +18,7 @@ var AudioController = {
 	  this.color = !this.color;
 		var order = Math.floor((Math.random() * 360) + 1);
 		ImperfectCircle.color1 = 'hsl(' + order/360 + ", " + '100%, 62%)';
-	  for(var i = 80; i < EnvironmentController.elements.length; i++) {
+	  for(var i = 200; i < EnvironmentController.elements.length; i++) {
 	  	var element = EnvironmentController.elements[i];
     	element.material.color.setHSL(order/360, 1, 0.62);
 		}

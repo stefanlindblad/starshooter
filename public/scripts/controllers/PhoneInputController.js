@@ -27,6 +27,8 @@ var PhoneInputController = {
     socket.on('update movement', function(msg){
       if(!self.infoIsHidden) {
         AudioController.init();
+        Rain.init();
+        GUIController.init();
         self.infoIsHidden = true;
         $('#phoneinput-info').css('display', 'none');
       }
@@ -44,7 +46,6 @@ var PhoneInputController = {
     }
     if(0 < dir && dir < this.diff) {
       dir += 360;
-      console.log("heeej");
     }
     $("#tilt-LR").html(Math.round(tiltLR));
     $("#tilt-FB").html(Math.round(tiltFB));

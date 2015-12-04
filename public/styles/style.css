@@ -1,10 +1,11 @@
 html {
 	font-family: "Quicksand", Arial, sans-serif;
-	font-size: 100%;
+	font-size: 2vh;
 	font-weight: 400;
 }
 body {
 	margin: 0;
+	background: #000;
 }
 canvas {
 	width: 100%;
@@ -36,6 +37,7 @@ h1.logo {
 	top: 30px;
 	right: 30px;
 	text-align: right;
+	z-index: 100;
 }
 #gui a {
 	width: 200px;
@@ -70,6 +72,7 @@ h1.logo {
 	position: fixed;
 	text-align: center;
 	width: 100%;
+	z-index: 1000;
 }
 #endgame #score {
 	margin-bottom: 30px;
@@ -102,6 +105,22 @@ a.button:focus {
 	display: inline-block;
 	text-decoration: none;
 }
+
+#aim {
+	background-image: url('aim.png');
+	background-position: center center;
+	background-size: 100%;
+	position: fixed;
+	width: 9vh;
+	height: 9vh;
+	-webkit-animation:spin 4s linear infinite;
+  	-moz-animation:spin 4s linear infinite;
+  	animation:spin 4s linear infinite;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 /**
  * Generic
  */
@@ -115,4 +134,36 @@ a.button:focus {
 	width: 100%;
 	display: table-cell;
 	vertical-align: middle;
+}
+
+.fade-in {
+  -webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+.fade-out {
+  -webkit-animation-name: fadeOut;
+  -webkit-animation-duration: 1s;
+  animation-name: fadeOut;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-webkit-keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }

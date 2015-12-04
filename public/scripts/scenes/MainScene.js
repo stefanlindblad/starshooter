@@ -25,16 +25,16 @@ var MainScene = {
 
 	  	TravelController.init();
 
+	  	var self = this;
 	  	window.addEventListener( 'resize', function() {
             var w = window.innerWidth,
                 h = window.innerHeight;
 
-            this.camera.aspect = w / h;
-            this.camera.updateProjectionMatrix();
+            self.camera.aspect = w / h;
+            self.camera.updateProjectionMatrix();
 
-            this.renderer.setSize( w, h );
+            self.renderer.setSize( w, h );
         }, false );
-
 	  	this.render();
 	},
 
@@ -55,6 +55,8 @@ var MainScene = {
 	endGame: function() {
 		$("#endgame").css("display", "table");
 		$("#gui").css("display", "none");
+		$("#aim").css("display", "none");
+		AudioController.audio.pause();
 		this.camera = null;
 		this.scene = null;
 	}
