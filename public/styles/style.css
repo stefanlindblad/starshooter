@@ -79,8 +79,8 @@ h1.logo {
 }
 #controller-selection a.button,
 #endgame a.button {
-	width: 200px;
-	margin: 0 10px;
+	width: 20vw;
+	margin: 0 1vw;
 }
 a.button,
 a.button:visited {
