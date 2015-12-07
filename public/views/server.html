@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>AGI15 - Project 2</title>
+    <title>Starshooter</title>
     <link href='https://fonts.googleapis.com/css?family=Quicksand:400,300,700|Codystar' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
   </head>
@@ -31,6 +31,9 @@
         <p>Select controls</strong></p>
         <p><a href="" id="phone-control" class="button">Phone</a>
         <a href="" id="mouse-control" class="button">Mouse</a></p>
+        <div id="about">
+          <p><a class="about" href="about">About</strong></a></p>
+        </div>
       </div>
     </div>
     <div id="phoneinput-info" class="table" style="display:none;">
@@ -40,10 +43,10 @@
     </div>
     <div id="endgame" class="fade-in table" style="display:none;">
       <div class="table-cell">
-              <h1 class="logo">Game over</h1>
-              <p>Final score:</p>
-              <div id="score"><span class="holder">0</span></div>
-              <div><a href="" class="button">Play again</a></div>
+        <h1 class="logo">Game over</h1>
+        <p>Final score:</p>
+        <div id="score"><span class="holder">0</span></div>
+        <div><a href="" class="button">Play again</a></div>
       </div>
     </div>
     <div id="aim" style="display:none;">
@@ -76,21 +79,21 @@
     uniform float c;
     uniform float p;
     varying float intensity;
-    void main() 
+    void main()
     {
       vec3 vNormal = normalize( normalMatrix * normal );
       vec3 vNormel = normalize( normalMatrix * viewVector );
       intensity = pow( c - dot(vNormal, vNormel), p );
-      
+
         gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
     }
     </script>
-    
+
     <!-- fragment shader a.k.a. pixel shader -->
-    <script id="fragmentShader" type="x-shader/x-vertex"> 
+    <script id="fragmentShader" type="x-shader/x-vertex">
     uniform vec3 glowColor;
     varying float intensity;
-    void main() 
+    void main()
     {
       vec3 glow = glowColor * intensity;
         gl_FragColor = vec4( glow, 1.0 );

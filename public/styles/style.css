@@ -19,6 +19,13 @@ h1.logo {
 	color: #fff;
 	text-shadow: 0 0 5px #fff , 0 0 10px #fff , 0 0 20px #D490D2 , 0 0 30px #D490D2 , 0 0 40px #D490D2 , 0 0 50px #D490D2;
 }
+#about-body {
+	color: white;
+	width: 50%;
+	margin: 0 auto;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
 #gui {
 	color: #fff;
 }
@@ -64,7 +71,7 @@ h1.logo {
 #input-data table {
 	color: #fff;
 }
-#controller-selection, 
+#controller-selection,
 #phoneinput-info,
 #endgame {
 	color: #fff;
@@ -81,6 +88,19 @@ h1.logo {
 #endgame a.button {
 	width: 20vw;
 	margin: 0 1vw;
+}
+#about {
+	position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+a.about,
+a.about:visited {
+	color: white;
+	text-decoration: none;
+}
+a.about:hover {
+	text-decoration: underline;;
 }
 a.button,
 a.button:visited {

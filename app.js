@@ -21,6 +21,10 @@ app.get('/control', function(req, res){
 	res.sendFile("controller.html", { root: __dirname + "/public/views" });
 });
 
+app.get('/about', function(req, res){
+	res.sendFile("about.html", { root: __dirname + "/public/views" });
+});
+
 var clientId = 0;
 var serverId = 0;
 
