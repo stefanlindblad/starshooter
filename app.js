@@ -8,6 +8,7 @@ var ip = require('ip');
 
 app.use("/scripts", express.static(__dirname + "/public/scripts"));
 app.use("/styles", express.static(__dirname + "/public/styles"));
+app.use("/images", express.static(__dirname + "/public/images"));
 app.use("/views", express.static(__dirname + "/public/views"));
 app.use("/textures", express.static(__dirname + "/public/textures"));
 app.use("/audio", express.static(__dirname + "/public/audio"));
