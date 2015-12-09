@@ -12,8 +12,6 @@ var Target = {
 		var glowMaterial = new THREE.ShaderMaterial({
 											    uniforms: 
 												{ 
-													"c":   { type: "f", value: 0.0 },
-													"p":   { type: "f", value: 1.0 },
 													glowColor: { type: "c", value: new THREE.Color(0x0096ff) },
 													viewVector: { type: "v3", value: MainScene.camera.position }
 												},
