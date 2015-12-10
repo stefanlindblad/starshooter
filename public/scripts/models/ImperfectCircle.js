@@ -50,8 +50,6 @@ var ImperfectCircle = {
 		var pointList = {};
 		pointList.first = {x:0, y:1};
 		var lastPoint = {x:1, y:1}
-		var minY = 1;
-		var maxY = 1;
 		var point;
 		var nextPoint;
 		var dx, newX, newY;
@@ -65,33 +63,14 @@ var ImperfectCircle = {
 				dx = nextPoint.x - point.x;
 				newX = 0.5*(point.x + nextPoint.x);
 				newY = 0.5*(point.y + nextPoint.y);
-				newY += dx*(Math.random()*2 - 1);
+				newY += dx*(chance.floating({ min: -1, max: 1 }));
 
 				var newPoint = {x:newX, y:newY};
 
-				//min, max
-				if (newY < minY) {
-					minY = newY;
-				}
-				else if (newY > maxY) {
-					maxY = newY;
-				}
-
-				//put between points
 				newPoint.next = nextPoint;
 				point.next = newPoint;
 
 				point = nextPoint;
-			}
-		}
-
-		//normalize to values between 0 and 1
-		if (maxY != minY) {
-			var normalizeRate = 1/(maxY - minY);
-			point = pointList.first;
-			while (point != null) {
-				point.y = normalizeRate*(point.y - minY);
-				point = point.next;
 			}
 		}
 

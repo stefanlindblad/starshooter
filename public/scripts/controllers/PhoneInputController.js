@@ -16,7 +16,7 @@ var PhoneInputController = {
 
   setupSocket: function() {
     var self = this;
-  	var socket = io("http://starshooter.kspri.se/");
+  	var socket = io();
     var uniqueKey = Math.random().toString(36).substring(2, 7);
   	socket.emit('server connect', { key: uniqueKey });
     $("#phoneinput-info #unique-key").html(uniqueKey);

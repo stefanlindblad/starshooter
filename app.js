@@ -41,15 +41,12 @@ io.on('connection', function(socket){
 
   // Client
   socket.on('client connect', function(msg){
-    console.log(msg.key);
     var pair = _.find(serverClientPairs, function(pair) {
       return pair.key == msg.key;
     })
-    console.log(pair);
     if(pair.client == null)
       pair.client = socket.id;
 
-    console.log(serverClientPairs);
   });
 
 	socket.on('update movement', function(msg){
@@ -67,7 +64,6 @@ io.on('connection', function(socket){
       client: null,
       key: msg.key
     });
-    console.log(serverClientPairs);
   });
 
   // Universal
