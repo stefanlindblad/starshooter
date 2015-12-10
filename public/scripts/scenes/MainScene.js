@@ -46,8 +46,9 @@ var MainScene = {
 		ShootController.collisionDetection(TargetController.getTargets(), 12);
 		Rain.renderRain();
 		if(AudioController.audio) {
-			if(AudioController.audio.ended)
+			if(AudioController.audio.ended) {
 				this.endGame();
+			}
 		}
     	this.renderer.render( this.scene, this.camera );
 	},

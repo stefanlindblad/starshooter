@@ -38,3 +38,6 @@ bower_components
 
 # Stefan
 .DS_Store
+
+# Kasperi
+sftp-config.json

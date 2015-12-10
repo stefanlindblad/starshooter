@@ -16,14 +16,10 @@ var PhoneInputController = {
 
   setupSocket: function() {
     var self = this;
-  	var socket = io();
-  	socket.emit('server connect', {});
-    socket.on('server already connected', function(msg){
-      socket.disconnect();
-      $('#connect-error').css('display', 'inline');
-      $('#input-data').css('display', 'none');
-      document.getElementById('input-data').style.display = "none";
-    })
+  	var socket = io("http://starshooter.kspri.se/");
+    var uniqueKey = Math.random().toString(36).substring(2, 7);
+  	socket.emit('server connect', { key: uniqueKey });
+    $("#phoneinput-info #unique-key").html(uniqueKey);
     socket.on('update movement', function(msg){
       if(!self.infoIsHidden) {
         AudioController.init();

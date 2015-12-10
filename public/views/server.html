@@ -1,30 +1,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Starshooter</title>
+    <title>Starshooter - Start</title>
     <link href='https://fonts.googleapis.com/css?family=Quicksand:400,300,700|Codystar' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <meta name="description" content="Starshooter is browser shooting game that runs in your browser and you control with your phone">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   </head>
 
   <body>
-    <p id="connect-error" style="display:none;">Another server is already connected, and only one at the time is allowed!</p>
-    <div id="input-data" style="display:none;">
-      <table>
-        <tr>
-          <td>Tilt Left/Right [gamma]</td>
-          <td id="tilt-LR"></td>
-        </tr>
-        <tr>
-          <td>Tilt Front/Back [beta]</td>
-          <td id="tilt-FB"></td>
-        </tr>
-        <tr>
-          <td>Direction [alpha]</td>
-          <td id="direction"></td>
-        </tr>
-      </table>
-      <p>r = recalibrate controls</p>
-    </div>
     <div id="controller-selection" class="fade-in table">
       <div class="table-cell">
         <h1 class="logo">Starshooter</h1>
@@ -38,7 +24,7 @@
     </div>
     <div id="phoneinput-info" class="table" style="display:none;">
       <div class="table-cell">
-        <p>Connect your phone and the game will start.</p>
+        <p>Go to <strong>http://starshooter.kspri.se/control#<span id="unique-key"></span></strong> in your phone and the game will start.</p> <p>Remember that you can always click "r" on your keyboard to calibrate the controller.</p>
       </div>
     </div>
     <div id="endgame" class="fade-in table" style="display:none;">
@@ -56,7 +42,7 @@
       <div id="exit"><a href="" id="exitgame-button" class="button">Exit</a></div>
       <div id="shotclock">3</div>
     </div>
-    <script src="socket.io/socket.io.js"></script>
+    <script src="http://starshooter.kspri.se/socket.io/socket.io.js"></script>
     <script src="bower_components/threejs/build/three.min.js"></script>
     <script src="scripts/libs/SPE.min.js"></script>
     <script src="bower_components/tweenjs/src/Tween.js"></script>

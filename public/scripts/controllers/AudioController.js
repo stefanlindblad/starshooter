@@ -4,9 +4,8 @@ var AudioController = {
 	color: false,
 	audio: null,
 	init: function() {
-		this.audio = new Audio('audio/hotline-miami.mp3');
+		this.audio = new Audio('http://starshooter.kspri.se/audio/hotline-miami.mp3');
 		this.audio.play();
-
 		var self = this;
 		setTimeout(function() {
 			setInterval(function() { self.makeSceneNice() }, 1260);

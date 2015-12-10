@@ -2,9 +2,10 @@
 
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 var ip = require('ip');
+var _ = require('underscore');
 
 app.use("/scripts", express.static(__dirname + "/public/scripts"));
 app.use("/styles", express.static(__dirname + "/public/styles"));
@@ -26,59 +27,71 @@ app.get('/about', function(req, res){
 	res.sendFile("about.html", { root: __dirname + "/public/views" });
 });
 
-var clientId = 0;
-var serverId = 0;
-
-io.on('connection', function(socket){
-
-  // Client
-  socket.on('client connect', function(msg){
-    if(clientId == 0) {
-      console.log('Client connected!');
-      clientId = socket.id;
-    }
-    else {
-      io.to(socket.id).emit('client already connected', {});
-    }
-  });
-
-	socket.on('update movement', function(msg){
-    if(socket.id == clientId) {
-      io.to(serverId).emit('update movement', msg);
-    }
-	});
-
-  // Server
-  socket.on('server connect', function(msg){
-    if(serverId == 0) {
-      console.log('Server connected!');
-      serverId = socket.id;
-    }
-    else {
-      io.to(socket.id).emit('server already connected', {});
-    }
-  });
-
-  // Universal
-  socket.on('disconnect', function () {
-    if(socket.id == serverId) {
-      serverId = 0;
-      console.log("Server disconnected!")
-    }
-    if (socket.id == clientId) {
-      clientId = 0;
-      console.log("Client disconnected!")
-    }
-  });
-});
-
 var port = 8080;
 if(process.argv.length > 2) {
   if(!isNaN(parseFloat(process.argv[2]))) {
     port = process.argv[2];
   }
 }
-http.listen(port, function(){
+
+// Socketio
+var serverClientPairs = [];
+
+io.on('connection', function(socket){
+
+  // Client
+  socket.on('client connect', function(msg){
+    console.log(msg.key);
+    var pair = _.find(serverClientPairs, function(pair) {
+      return pair.key == msg.key;
+    })
+    console.log(pair);
+    if(pair.client == null)
+      pair.client = socket.id;
+
+    console.log(serverClientPairs);
+  });
+
+	socket.on('update movement', function(msg){
+    var pair = _.find(serverClientPairs, function(pair) {
+      return pair.client == socket.id;
+    });
+    if(pair)
+      io.to(pair.server).emit('update movement', msg);
+	});
+
+  // Server
+  socket.on('server connect', function(msg){
+    serverClientPairs.push({
+      server: socket.id,
+      client: null,
+      key: msg.key
+    });
+    console.log(serverClientPairs);
+  });
+
+  // Universal
+  socket.on('disconnect', function () {
+    var isServer = _.find(serverClientPairs, function(pair) {
+      return pair.server == socket.id;
+    });
+    if(isServer) {
+      serverClientPairs = _.reject(serverClientPairs, function(pair) {
+        return pair.server == socket.id;
+      })
+      return;
+    }
+
+    var pair = _.find(serverClientPairs, function(pair) {
+      return pair.client == socket.id;
+    })
+    if(pair)
+      pair.client = null;
+  });
+});
+
+// Start listening
+server.listen(port, function(){
   console.log('Server is running on: ' + ip.address() + ':' + port);
   console.log('Controller is running on ' + ip.address() + ':' + port + "/control")
 });

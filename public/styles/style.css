@@ -1,9 +1,11 @@
 html {
 	font-family: "Quicksand", Arial, sans-serif;
 	font-size: 2vh;
+	font-size: 100%;
 	font-weight: 400;
 }
 body {
+	padding: 0;
 	margin: 0;
 	background: #000;
 }
@@ -20,19 +22,35 @@ h1.logo {
 	text-shadow: 0 0 5px #fff , 0 0 10px #fff , 0 0 20px #D490D2 , 0 0 30px #D490D2 , 0 0 40px #D490D2 , 0 0 50px #D490D2;
 }
 #about-body {
- 	text-align: justify;
 	color: white;
-	width: 50%;
+	width: 960px;
+	max-width: 100%;
 	margin: 0 auto;
 	margin-top: 100px;
 	margin-bottom: 100px;
 }
-#about-body img {
-	width: 32.9%;
+#about-body .inner {
+	padding: 0 10px;
 }
-#about-body .vid {
-	width: 49.5%;
-	height: 40%
+#about-body #photos {
+	overflow: hidden;
+}
+#about-body #photos img {
+	float: left;
+	max-width: 300px;
+	margin: 5px;
+}
+#about-body #team {
+	overflow: hidden;
+}
+#about-body #team .item {
+	float: left;
+	width: 50%;
+	margin-bottom: 20px;
+	text-align: center;
+}
+#about-body #back {
+	text-align: center;
 }
 #gui {
 	color: #fff;
@@ -55,7 +73,7 @@ h1.logo {
 	z-index: 100;
 }
 #gui a {
-	width: 20vw;
+	width: 200px
 }
 
 #gui #shotclock {
@@ -93,21 +111,23 @@ h1.logo {
 	margin-bottom: 30px;
 }
 #controller-selection a.button,
-#endgame a.button {
-	width: 20vw;
-	margin: 0 1vw;
+#endgame a.button,
+#about-body a.button {
+	width: 200px;
+	max-width: 100%;
+	margin: 0 5px;
 }
 #about {
-	position: fixed;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
-a.about,
-a.about:visited {
+a,
+a:visited {
 	color: white;
 	text-decoration: none;
 }
-a.about:hover {
+a:hover {
 	text-decoration: underline;;
 }
 a.button,
@@ -116,7 +136,7 @@ a.button:visited {
 	font-weight: 400;
 	background: none;
 	border: 2px solid #fff;
-	padding: 2.5vh 0;
+	padding: 20px 0;
 	color: #fff;
 	display: inline-block;
 	text-decoration: none;
@@ -141,6 +161,8 @@ a.button:focus {
 	position: fixed;
 	width: 9vh;
 	height: 9vh;
+	width: 100px;
+	height: 100px;
 	-webkit-animation:spin 4s linear infinite;
   	-moz-animation:spin 4s linear infinite;
   	animation:spin 4s linear infinite;
@@ -152,6 +174,9 @@ a.button:focus {
 /**
  * Generic
  */
+img {
+	max-width: 100%;
+}
 .table {
 	height: 100%;
 	width: 100%;
@@ -195,3 +220,5 @@ a.button:focus {
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-bottom: 20px;} .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }

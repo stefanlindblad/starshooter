@@ -1,40 +1,90 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>AGI15 - Project 2</title>
+    <title>Starshooter - About</title>
     <link href='https://fonts.googleapis.com/css?family=Quicksand:400,300,700|Codystar' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <meta name="description" content="Starshooter is browser shooting game that runs in your browser and you control with your phone">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   </head>
   <body>
     <div id="about-body">
-      <h1>About Starshooter</h1>
-      <p>Starshooter is a game about shooting stuff in space. It shoots automatically and the player controls the aiming point with a phone sticked to a wheelchair. The goal is to shoot as many planets as possible with in the time limit.</p>
-      <h3>Motivations</h3>
-      <p>The main theme of the second project in AGI project 2 was to create a game that could be help improve people's the daily life. We decided to create
-      a game to help people learn how to use a wheelchair. Especially, this game helps to learn how to tilt correctly with the wheelchair.</p>
-      <p>Furthermore, another motivation was to learn how to code with the WebGL/Three.js library. During our first projects in Advanced Graphics and Interaction, we used
-      Unity, a game engine, to develop our games. So for this project, we wanted to come back to classic computer programming.</p>
-      <h3>Technology</h3>
-      <h4>Three.js</h4>
-      <h4>Node.js</h4>
-      <h4>Socket.io</h4>
-      <h3>Challenges</h3>
-      <p></p>
-      <h3>Lessons learned</h3>
-      <p>- Three.js is a good library to use in computer graphics but it is quite complicated to learn to use it and to debug it because the documentation is not really detailed.</p>
-      <p>- Three.js examples found on the web generally can be difficult to use because some of them don't use the latest version of Three.js so the code didn't work anymore if you want to use the latest version since some functions have been replaced.</p>
-      <h3>Photos</h3>
-      <a href="/images/IMG_1.jpg"><img src="/images/IMG_1.jpg"></a>
-      <a href="/images/IMG_2.jpg"><img src="/images/IMG_2.jpg"></a>
-      <a href="/images/IMG_3.jpg"><img src="/images/IMG_3.jpg"></a>
-      <a href="/images/IMG_4.jpg"><img src="/images/IMG_4.jpg"></a>
-      <a href="/images/IMG_5.jpg"><img src="/images/IMG_5.jpg"></a>
-      <a href="/images/IMG_1778.jpg"><img src="/images/IMG_1778.jpg"></a>
-      <a href="/images/IMG_1785.jpg"><img src="/images/IMG_1785.jpg"></a>
-      <h3>Videos</h3>
-      <iframe class="vid" src="https://www.youtube.com/embed/CMs1Ft12o00" frameborder="0" allowfullscreen></iframe>
-      <iframe class="vid" src="https://www.youtube.com/embed/JNq0ubgZQAs" frameborder="0" allowfullscreen></iframe>
-      <iframe class="vid" src="https://www.youtube.com/embed/FWB4jemnIK0" frameborder="0" allowfullscreen></iframe>
-      <p><a href="/" id="phone-control" class="button" style="width: 100%; margin: 0 auto;">Back to game</a></p>
+      <div class="inner">
+        <div id="general">
+          <h1>About Starshooter</h1>
+          <p>Starshooter is a game about shooting stuff in space. It shoots automatically and the player controls the aiming point with a phone sticked to a wheelchair. The goal is to shoot as many planets as possible with in the time limit.</p>
+          <h3>Motivations</h3>
+          <p>The main theme of the second project in AGI project 2 was to create a game that could be help improve people's the daily life. We decided to create
+          a game to help people learn how to use a wheelchair. Especially, this game helps to learn how to tilt correctly with the wheelchair.</p>
+          <p>Furthermore, another motivation was to learn how to code with the WebGL/Three.js library. During our first projects in Advanced Graphics and Interaction, we used
+          Unity, a game engine, to develop our games. So for this project, we wanted to come back to classic computer programming.</p>
+        </div>
+        <div id="technology">
+          <h3>Technology</h3>
+          <h4>Three.js</h4>
+          <p>Three.js is a Javascript library for creating of 3D computer graphics in a web browser. It lays ontop of WebGL making it easier to use WebGL. All of the 3D elements in Starshooter are made in Three.js or WebGL.</p>
+          <h4>Node.js</h4>
+          <p>Node.js is a server-side scripting framework where you can easily set up a server using Javascript. The server in Starshooter uses Node.js because it takes no time at all to get up and running when using it.</p>
+          <h4>Socket.io</h4>
+          <p>Socket.io is a Websocket module for especially Node.js. Websockets allows fast communication between the computer browser and the smartphone, which is needed since the phones orientation is constantly sent to the browser.</p>
+        </div>
+        <div id="challenges">
+          <h3>Challenges</h3>
+          <p>- Phone to server communication</p>
+          <p>- Using Three.js and WebGL</p>
+          <p>- Procedural rendering/generation</p>
+          <p>- Shaders</p>
+          <p>- Particle system</p>
+        </div>
+        <div id="lessons">
+          <h3>Lessons learned</h3>
+          <p>- Three.js is a good library to use in computer graphics but it is quite complicated to learn to use it and to debug it because the documentation is not really detailed.</p>
+          <p>- Three.js examples found on the web generally can be difficult to use because some of them don't use the latest version of Three.js so the code didn't work anymore if you want to use the latest version since some functions have been replaced.</p>
+        </div>
+        <div id="photos">
+        <h3>Photos</h3>
+          <a href="/images/IMG_1.jpg"><img src="/images/IMG_1.jpg"></a>
+          <a href="/images/IMG_2.jpg"><img src="/images/IMG_2.jpg"></a>
+          <a href="/images/IMG_3.jpg"><img src="/images/IMG_3.jpg"></a>
+          <a href="/images/IMG_4.jpg"><img src="/images/IMG_4.jpg"></a>
+          <a href="/images/IMG_5.jpg"><img src="/images/IMG_5.jpg"></a>
+          <a href="/images/IMG_1778.jpg"><img src="/images/IMG_1778.jpg"></a>
+          <a href="/images/IMG_1785.jpg"><img src="/images/IMG_1785.jpg"></a>
+        </div>
+        <div id="videos">
+          <h3>Videos</h3>
+          <div class='embed-container'><iframe src="https://www.youtube.com/embed/CMs1Ft12o00" frameborder="0" allowfullscreen></iframe></div>
+          <div class='embed-container'><iframe src="https://www.youtube.com/embed/JNq0ubgZQAs" frameborder="0" allowfullscreen></iframe></div>
+          <div class='embed-container'><iframe src="https://www.youtube.com/embed/FWB4jemnIK0" frameborder="0" allowfullscreen></iframe></div>
+        </div>
+        <div id="team">
+          <h3>Team</h3>
+          <div class="item">
+            <img src="images/kasperi.png" alt="Johan Kasperi" />
+            <h5>Johan Kasperi</h5>
+            <a href="https://github.com/johankasperi" title="Github">Github</a>
+          </div>
+          <div class="item">
+            <img src="images/stefan.png" alt="Stefan Seibert" />
+            <h5>Stefan Seibert</h5>
+            <a href="https://github.com/stefanseibert" title="Github">Github</a>
+          </div>
+          <div class="item">
+            <img src="images/kitti.png" alt="Johan Kitti Söderberg" />
+            <h5>Johan Kitti Söderberg</h5>
+            <a href="https://github.com/johankitti" title="Github">Github</a>
+          </div>
+          <div class="item">
+            <img src="images/omid.png" alt="Omid Ghorreshi" />
+            <h5>Omid Ghorreshi</h5>
+            <a href="https://github.com/ghorreso" title="Github">Github</a>
+          </div>
+        </div>
+        <div id="back">
+          <p><a href="/" id="phone-control" class="button">Back to game</a></p>
+        </div>
+      </div>
   </body>
 </html>

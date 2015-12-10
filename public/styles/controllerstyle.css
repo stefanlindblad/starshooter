@@ -1,0 +1,51 @@
+html {
+	font-family: "Quicksand", Arial, sans-serif;
+	font-size: 100%;
+	font-size: 2vw;
+	font-weight: 400;
+}
+body {
+	margin: 0;
+	background: #000;
+	text-align: center;
+}
+h1.logo {
+	font-size: 1.6em;
+	letter-spacing: 0.2em;
+	font-weight: 400;
+	text-transform: uppercase;
+	color: #fff;
+	text-shadow: 0 0 5px #fff , 0 0 10px #fff , 0 0 20px #D490D2 , 0 0 30px #D490D2 , 0 0 40px #D490D2 , 0 0 50px #D490D2;
+}
+
+/**
+ * Generic
+ */
+.table {
+	height: 100%;
+	width: 100%;
+	display: table;
+}
+.table-cell {
+	height: 100%;
+	width: 100%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.fade-in {
+  -webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
