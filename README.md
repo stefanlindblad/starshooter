@@ -25,3 +25,7 @@ Whats being rendered on the server is determined by the html-file "server.html" 
 
 Put the js-files (for WebGL or three.js graphics) you create in "public/scripts" and reference them at the end of the body-tag in server.html
 
+## Demo
+You can play the game at [starshooter.kspri.se](http://starshooter.kspri.se/)
+
+
